@@ -77,7 +77,8 @@ function zhdanov_redirect_guess( $old_urls ) {
 		$index[ $p->post_name ] = $p;
 		$index[ zhdanov_core_translit( mb_strtolower( $p->post_title ) ) ] = $p;
 	}
-	$lines = array();
+	$lines   = array();
+	$fetched = 0;
 	foreach ( $old_urls as $u ) {
 		$path = zhdanov_path( $u );
 		if ( '' === $path ) {
@@ -101,10 +102,107 @@ function zhdanov_redirect_guess( $old_urls ) {
 				}
 			}
 		}
+		$why = '';
+		// Не нашли по адресу: открываем старую страницу и ищем новую с тем же названием (Tilda: /page12345.html)
+		if ( ! $hit && preg_match( '#^https?://#i', trim( $u ) ) && $fetched < 80 ) {
+			$fetched++;
+			$title = zhdanov_old_title( trim( $u ) );
+			if ( $title ) {
+				$hit = zhdanov_match_title( $title, $posts );
+				$why = $hit ? '   # по названию «' . $title . '»' : '   # не нашлось, старая страница: «' . $title . '»';
+			}
+		}
 		$to      = $hit ? wp_make_link_relative( get_permalink( $hit ) ) : '/';
-		$lines[] = '/' . $path . ' ' . $to . ( $hit ? '' : '   # не нашлось: ведём на главную, поправьте' );
+		$lines[] = '/' . $path . ' ' . $to . ( $hit ? $why : ( $why ? $why . ', ведём на главную' : '   # не нашлось: ведём на главную, поправьте' ) );
 	}
 	return $lines;
+}
+
+/** Название старой страницы: h1, иначе title без «| Название сайта». */
+function zhdanov_old_title( $url ) {
+	$r = wp_remote_get( $url, array( 'timeout' => 6, 'redirection' => 3, 'limit_response_size' => 400000 ) );
+	if ( is_wp_error( $r ) || 200 !== (int) wp_remote_retrieve_response_code( $r ) ) {
+		return '';
+	}
+	$h = wp_remote_retrieve_body( $r );
+	$t = '';
+	if ( preg_match( '#<h1[^>]*>(.*?)</h1>#is', $h, $m ) ) {
+		$t = $m[1];
+	}
+	if ( '' === trim( wp_strip_all_tags( $t ) ) && preg_match( '#<title[^>]*>(.*?)</title>#is', $h, $m ) ) {
+		$t = preg_split( '/\s+[|\x{2013}\x{2014}\-\x{00B7}]\s+/u', html_entity_decode( $m[1], ENT_QUOTES, 'UTF-8' ) )[0];
+	}
+	$t = trim( preg_replace( '/\s+/u', ' ', html_entity_decode( wp_strip_all_tags( $t ), ENT_QUOTES, 'UTF-8' ) ) );
+	return mb_substr( $t, 0, 120 );
+}
+
+function zhdanov_norm_title( $s ) {
+	$s = mb_strtolower( str_replace( 'ё', 'е', (string) $s ) );
+	return trim( preg_replace( '/[^\p{L}\p{N}]+/u', ' ', $s ) );
+}
+
+/** Запись с самым похожим названием (точное совпадение, вхождение, похожесть больше 80%). */
+function zhdanov_match_title( $title, $posts ) {
+	$t    = zhdanov_norm_title( $title );
+	$best = 0;
+	$hit  = null;
+	if ( mb_strlen( $t ) < 3 ) {
+		return null;
+	}
+	foreach ( $posts as $p ) {
+		$n = zhdanov_norm_title( $p->post_title );
+		if ( '' === $n ) {
+			continue;
+		}
+		if ( $n === $t ) {
+			return $p;
+		}
+		$pc = 0;
+		if ( mb_strlen( $n ) >= 5 && ( false !== mb_strpos( $t, $n ) || false !== mb_strpos( $n, $t ) ) ) {
+			$pc = 85 + min( 10, 10 * min( mb_strlen( $n ), mb_strlen( $t ) ) / max( mb_strlen( $n ), mb_strlen( $t ) ) );
+		} else {
+			similar_text( $t, $n, $pc );
+		}
+		if ( $pc > 80 && $pc > $best ) {
+			$best = $pc;
+			$hit  = $p;
+		}
+	}
+	return $hit;
+}
+
+/** Правила, которые ведут на несуществующие страницы своего сайта: [старый => новый]. */
+function zhdanov_redirect_check() {
+	$bad  = array();
+	$host = wp_parse_url( home_url(), PHP_URL_HOST );
+	foreach ( zhdanov_redirects() as $from => $to ) {
+		if ( 0 === strpos( $to, 'http' ) && wp_parse_url( $to, PHP_URL_HOST ) !== $host ) {
+			continue;
+		}
+		$path = trim( (string) wp_parse_url( $to, PHP_URL_PATH ), '/' );
+		if ( '' === $path ) {
+			continue;
+		}
+		$id = url_to_postid( home_url( '/' . $path . '/' ) );
+		if ( $id && 'publish' === get_post_status( $id ) ) {
+			continue;
+		}
+		$segs = explode( '/', $path );
+		$ok   = false;
+		foreach ( get_post_types( array( 'public' => true ), 'objects' ) as $pt ) {
+			$slug = is_string( $pt->has_archive ) ? $pt->has_archive : ( $pt->has_archive && ! empty( $pt->rewrite['slug'] ) ? $pt->rewrite['slug'] : '' );
+			if ( $slug && trim( $slug, '/' ) === $path ) {
+				$ok = true;
+			}
+		}
+		if ( ! $ok && term_exists( sanitize_title( urldecode( end( $segs ) ) ) ) ) {
+			$ok = true;
+		}
+		if ( ! $ok ) {
+			$bad[ $from ] = $to;
+		}
+	}
+	return $bad;
 }
 
 /** Адреса из sitemap.xml старого сайта (Tilda, Taplink, WordPress). */
@@ -364,6 +462,12 @@ function zhdanov_migrate_page() {
 			}
 			echo esc_html( implode( ', ', $x ) );
 			?></p>
+		<?php endif; ?>
+		<?php $bad = zhdanov_redirect_check(); if ( $bad ) : ?>
+			<div class="notice notice-warning inline" style="max-width:980px"><p><b>Ведут на страницы, которых нет (<?php echo count( $bad ); ?>):</b> поправьте новый адрес в строках выше.</p>
+			<ul style="font-family:monospace;margin-left:1em"><?php foreach ( array_slice( $bad, 0, 30, true ) as $k => $v ) : ?><li>/<?php echo esc_html( $k ); ?> → <?php echo esc_html( $v ); ?></li><?php endforeach; ?></ul></div>
+		<?php elseif ( zhdanov_redirects() ) : ?>
+			<p style="color:#007017">✓ Все <?php echo count( zhdanov_redirects() ); ?> перенаправлений ведут на существующие страницы.</p>
 		<?php endif; ?>
 		<?php if ( $log ) : ?>
 			<details><summary><b>Не найдено (404), последние адреса:</b> добавьте нужные в перенаправления</summary>

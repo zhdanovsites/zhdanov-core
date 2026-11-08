@@ -91,6 +91,10 @@ function zhdanov_health_checks() {
 		$il = get_option( 'zh_indexnow_last' );
 		$add( ! $il || in_array( (int) $il['code'], array( 200, 202 ), true ), 'Яндекс узнаёт о новых страницах сразу (IndexNow)', zhdanov_indexnow_status(), '', 'warn' );
 	}
+	if ( function_exists( 'zhdanov_redirect_check' ) && zhdanov_redirects() ) {
+		$rb = zhdanov_redirect_check();
+		$add( ! $rb, 'Старые адреса ведут на существующие страницы', count( $rb ) . ' перенаправлений ведут на страницы, которых нет, например /' . (string) key( $rb ) . '. Поправьте в «Переезде».', admin_url( 'admin.php?page=zhdanov-migrate' ), 'warn' );
+	}
 	if ( function_exists( 'zhdanov_2fa_on' ) ) {
 		$no2fa = array();
 		foreach ( get_users( array( 'role' => 'administrator', 'number' => 20 ) ) as $au ) {
