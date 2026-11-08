@@ -1,0 +1,18 @@
+{
+  "core": {
+    "version": "0.8.1",
+    "package": "https://raw.githubusercontent.com/zhdanovsites/zhdanov-core/main/dist/zhdanov-core-v0.8.1.zip",
+    "requires": "6.7",
+    "tested": "6.9",
+    "requires_php": "7.4",
+    "notes": "Обновление по ссылке и автообновление с GitHub. Вход с кодом из приложения (2FA); старые ссылки сами ведут на новые при смене адреса; «Копия» у любой записи; вход по ссылке без пароля; админка для клиента (роль «Клиент сайта»); европейский режим GDPR (баннер с категориями, Google Analytics с Consent Mode v2, журнал согласий, «удалить мои данные»); журнал действий; режим «Сайт готовится»; IndexNow для Яндекса; отчёт разработчику в Telegram и на почту (SSL, ошибки PHP, изменения); письма через почтовый ящик (SMTP); безопасный повторный перенос концепта со снимками и откатом."
+  },
+  "theme": {
+    "version": "0.7.0",
+    "package": "https://raw.githubusercontent.com/zhdanovsites/zhdanov-core/main/dist/zhdanov-theme-v0.7.0.zip",
+    "requires": "6.7",
+    "tested": "6.9",
+    "requires_php": "7.4",
+    "notes": "Шапка на средних экранах."
+  }
+}

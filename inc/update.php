@@ -17,7 +17,7 @@
 defined( 'ABSPATH' ) || exit;
 
 function zhdanov_update_url() {
-	$u = defined( 'ZHDANOV_UPDATE_URL' ) ? ZHDANOV_UPDATE_URL : 'https://github.com/zhdanovsites/zhdanov-core/releases/latest/download/update.json';
+	$u = defined( 'ZHDANOV_UPDATE_URL' ) ? ZHDANOV_UPDATE_URL : 'https://raw.githubusercontent.com/zhdanovsites/zhdanov-core/main/dist/update.json';
 	return (string) apply_filters( 'zhdanov_update_url', $u );
 }
 

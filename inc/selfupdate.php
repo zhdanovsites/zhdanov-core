@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 
 /** Хосты, с которых можно брать архивы. */
 function zhdanov_su_hosts() {
-	return (array) apply_filters( 'zhdanov_selfupdate_hosts', array( 'drive.google.com', 'drive.usercontent.google.com', 'docs.google.com', 'github.com', 'objects.githubusercontent.com', 'release-assets.githubusercontent.com', 'zhdanovsites.com', 'www.zhdanovsites.com' ) );
+	return (array) apply_filters( 'zhdanov_selfupdate_hosts', array( 'drive.google.com', 'drive.usercontent.google.com', 'docs.google.com', 'github.com', 'raw.githubusercontent.com', 'objects.githubusercontent.com', 'release-assets.githubusercontent.com', 'zhdanovsites.com', 'www.zhdanovsites.com' ) );
 }
 
 /** Ссылка «Открыть в Drive» → прямая ссылка на скачивание. */
