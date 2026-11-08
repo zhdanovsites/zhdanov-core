@@ -480,14 +480,35 @@ function zhdanov_backup_make() {
 	while ( count( $all ) > 4 ) { // храним 4 последние недели
 		@unlink( array_shift( $all ) ); // phpcs:ignore
 	}
-	// Копия в Telegram владельцу (если файл не больше 45 МБ).
-	$o = (array) get_option( 'zhdanov_core', array() );
-	if ( ! empty( $o['tg_token'] ) && ! empty( $o['tg_chat'] ) && filesize( $file ) < 45 * MB_IN_BYTES && ( ! isset( $o['backup_tg'] ) || $o['backup_tg'] ) ) {
+	// Копия в Telegram: владельцу (бот заявок) и студии (бот отчётов). Заявок и паролей в копии нет.
+	$o       = (array) get_option( 'zhdanov_core', array() );
+	$targets = array();
+	if ( ! empty( $o['tg_token'] ) && ! empty( $o['tg_chat'] ) && ( ! isset( $o['backup_tg'] ) || $o['backup_tg'] ) ) {
+		$targets['владельцу'] = array( $o['tg_token'], $o['tg_chat'] );
+	}
+	if ( ! empty( $o['studio_tg_token'] ) && ! empty( $o['studio_tg_chat'] ) && ( ! isset( $o['backup_studio'] ) || $o['backup_studio'] ) ) {
+		$targets['студии'] = array( $o['studio_tg_token'], $o['studio_tg_chat'] );
+	}
+	$status = array();
+	foreach ( $targets as $who => $t ) {
+		if ( isset( $targets['владельцу'] ) && 'студии' === $who && $t === $targets['владельцу'] ) {
+			continue;
+		}
+		if ( filesize( $file ) >= 45 * MB_IN_BYTES ) {
+			$status[] = $who . ': файл ' . size_format( filesize( $file ) ) . ', Telegram принимает до 45 МБ, копия только на сервере';
+			continue;
+		}
 		$bnd  = wp_generate_password( 24, false );
-		$body = "--$bnd\r\nContent-Disposition: form-data; name=\"chat_id\"\r\n\r\n" . $o['tg_chat'] . "\r\n";
-		$body .= "--$bnd\r\nContent-Disposition: form-data; name=\"caption\"\r\n\r\nКопия сайта " . get_bloginfo( 'name' ) . ' от ' . wp_date( 'j F Y' ) . ". Восстановить: Жданов → Рецепт сайта → Загрузить.\r\n";
+		$body = "--$bnd\r\nContent-Disposition: form-data; name=\"chat_id\"\r\n\r\n" . $t[1] . "\r\n";
+		$body .= "--$bnd\r\nContent-Disposition: form-data; name=\"caption\"\r\n\r\n💾 Копия сайта " . get_bloginfo( 'name' ) . ' (' . wp_parse_url( home_url(), PHP_URL_HOST ) . ') от ' . wp_date( 'j F Y' ) . ". Восстановить: Жданов → Рецепт сайта → Загрузить.\r\n";
 		$body .= "--$bnd\r\nContent-Disposition: form-data; name=\"document\"; filename=\"" . basename( $file ) . "\"\r\nContent-Type: application/zip\r\n\r\n" . file_get_contents( $file ) . "\r\n--$bnd--\r\n"; // phpcs:ignore
-		wp_remote_post( 'https://api.telegram.org/bot' . rawurlencode( $o['tg_token'] ) . '/sendDocument', array( 'timeout' => 60, 'headers' => array( 'Content-Type' => 'multipart/form-data; boundary=' . $bnd ), 'body' => $body ) );
+		$r    = wp_remote_post( 'https://api.telegram.org/bot' . rawurlencode( $t[0] ) . '/sendDocument', array( 'timeout' => 60, 'headers' => array( 'Content-Type' => 'multipart/form-data; boundary=' . $bnd ), 'body' => $body ) );
+		$j    = is_wp_error( $r ) ? null : json_decode( wp_remote_retrieve_body( $r ), true );
+		$status[] = $who . ': ' . ( ! empty( $j['ok'] ) ? 'отправлена в Telegram' : 'не ушла (' . ( is_wp_error( $r ) ? $r->get_error_message() : ( $j['description'] ?? 'ответ ' . wp_remote_retrieve_response_code( $r ) ) ) . ')' );
+	}
+	update_option( 'zhdanov_backup_status', array( 'time' => time(), 'size' => size_format( filesize( $file ) ), 'tg' => $status ), false );
+	if ( function_exists( 'zhdanov_log' ) ) {
+		zhdanov_log( 'Копия сайта: ' . size_format( filesize( $file ) ) . ( $status ? '; ' . implode( '; ', $status ) : '' ) );
 	}
 	update_option( 'zhdanov_backup_last', wp_date( 'j F Y, H:i' ), false );
 	return $file;
@@ -526,7 +547,12 @@ function zhdanov_backup_list_html() {
 	if ( isset( $_GET['backup'] ) ) { // phpcs:ignore
 		$h .= 'ok' === $_GET['backup'] ? '<div class="notice notice-success"><p>Копия сделана.</p></div>' : '<div class="notice notice-error"><p>Не получилось сделать копию.</p></div>'; // phpcs:ignore
 	}
-	$h .= '<p>Копия = рецепт сайта: настройки, стили, страницы, записи, картинки, меню (без паролей и ключей). Если включены заявки в Telegram, копия приходит и туда.</p><ul>';
+	$h .= '<p>Копия = рецепт сайта: настройки, стили, страницы, записи, картинки, меню (без паролей, ключей и заявок клиентов). Копия приходит в Telegram владельцу (если включены заявки в Telegram) и студии (бот отчётов).</p>';
+	$bs = get_option( 'zhdanov_backup_status' );
+	if ( is_array( $bs ) ) {
+		$h .= '<p>Последняя: ' . esc_html( wp_date( 'd.m.Y H:i', $bs['time'] ) . ', ' . $bs['size'] . ( $bs['tg'] ? ' · ' . implode( ' · ', $bs['tg'] ) : ' · в Telegram не отправлялась (не настроен)' ) ) . '</p>';
+	}
+	$h .= '<ul>';
 	foreach ( $files as $f ) {
 		$h .= '<li><a href="' . esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=zhdanov_backup_get&f=' . rawurlencode( basename( $f ) ) ), 'zhdanov_backup_get' ) ) . '">' . esc_html( basename( $f ) ) . '</a> · ' . esc_html( size_format( filesize( $f ) ) ) . '</li>';
 	}

@@ -91,6 +91,16 @@ function zhdanov_health_checks() {
 		$il = get_option( 'zh_indexnow_last' );
 		$add( ! $il || in_array( (int) $il['code'], array( 200, 202 ), true ), 'Яндекс узнаёт о новых страницах сразу (IndexNow)', zhdanov_indexnow_status(), '', 'warn' );
 	}
+	if ( function_exists( 'zhdanov_backup_dir' ) ) {
+		$bf = glob( zhdanov_backup_dir() . '/recept-*.zip' );
+		$bt = $bf ? max( array_map( 'filemtime', $bf ) ) : 0;
+		$bs = get_option( 'zhdanov_backup_status' );
+		$tg = is_array( $bs ) && $bs['tg'] && ! preg_grep( '/не ушла/u', $bs['tg'] );
+		$add( $bt && $bt > time() - 10 * DAY_IN_SECONDS, 'Есть свежая копия сайта', $bt ? 'Последняя копия ' . wp_date( 'd.m.Y', $bt ) . '. Сделайте копию в «Рецепте сайта».' : 'Копий ещё нет: сделайте в «Рецепте сайта» (кнопка «Сделать копию сейчас»).', admin_url( 'admin.php?page=zhdanov-recipe' ), 'warn' );
+		if ( is_array( $bs ) && $bs['tg'] && ! $tg ) {
+			$add( false, 'Копия сайта уходит в Telegram', implode( '; ', $bs['tg'] ), admin_url( 'admin.php?page=zhdanov-recipe' ), 'warn' );
+		}
+	}
 	if ( function_exists( 'zhdanov_redirect_check' ) && zhdanov_redirects() ) {
 		$rb = zhdanov_redirect_check();
 		$add( ! $rb, 'Старые адреса ведут на существующие страницы', count( $rb ) . ' перенаправлений ведут на страницы, которых нет, например /' . (string) key( $rb ) . '. Поправьте в «Переезде».', admin_url( 'admin.php?page=zhdanov-migrate' ), 'warn' );
