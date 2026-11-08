@@ -145,5 +145,84 @@ function zhdanov_su_page() {
 	if ( is_array( $last ) ) {
 		echo '<p style="margin-top:20px;color:#555">Последнее обновление по ссылке: ' . esc_html( wp_date( 'd.m.Y H:i', $last['time'] ) . ' · ' . $last['text'] ) . '</p>';
 	}
+	do_action( 'zhdanov_su_page_after' );
 	echo '</div>';
 }
+
+/* ---------- Автообновление с GitHub (своё, не зависит от хостинга) ---------- */
+
+add_action( 'init', function () {
+	if ( get_option( 'zh_auto_update' ) && ! wp_next_scheduled( 'zhdanov_auto_update' ) ) {
+		wp_schedule_event( time() + 300, 'twicedaily', 'zhdanov_auto_update' );
+	} elseif ( ! get_option( 'zh_auto_update' ) && wp_next_scheduled( 'zhdanov_auto_update' ) ) {
+		wp_clear_scheduled_hook( 'zhdanov_auto_update' );
+	}
+} );
+
+/** Проверить GitHub и поставить новое. Возвращает список строк о сделанном. */
+function zhdanov_su_auto() {
+	if ( ! function_exists( 'zhdanov_update_info' ) ) {
+		return array();
+	}
+	$info = zhdanov_update_info( true );
+	$done = array();
+	if ( ! empty( $info['core'] ) && version_compare( $info['core']['version'], ZHDANOV_CORE_VERSION, '>' ) ) {
+		$r      = zhdanov_su_run( $info['core']['package'] );
+		$done[] = is_wp_error( $r ) ? '❗ Плагин ' . $info['core']['version'] . ': ' . $r->get_error_message() : $r;
+	}
+	$t = wp_get_theme( 'zhdanov-theme' );
+	if ( $t->exists() && ! empty( $info['theme'] ) && version_compare( $info['theme']['version'], $t->get( 'Version' ), '>' ) ) {
+		$r      = zhdanov_su_run( $info['theme']['package'] );
+		$done[] = is_wp_error( $r ) ? '❗ Тема ' . $info['theme']['version'] . ': ' . $r->get_error_message() : $r;
+	}
+	if ( $done ) {
+		update_option( 'zh_auto_update_last', array( 'time' => time(), 'text' => implode( '; ', $done ) ), false );
+		$token = trim( (string) zhdanov_core_opt( 'studio_tg_token' ) );
+		$chat  = trim( (string) zhdanov_core_opt( 'studio_tg_chat' ) );
+		if ( $token && $chat && function_exists( 'zhdanov_core_tg_send' ) ) {
+			zhdanov_core_tg_send( $token, $chat, '🔄 ' . wp_parse_url( home_url(), PHP_URL_HOST ) . ': ' . implode( '; ', $done ) );
+		}
+	}
+	return $done;
+}
+
+add_action( 'zhdanov_auto_update', function () {
+	@set_time_limit( 300 ); // phpcs:ignore
+	zhdanov_su_auto();
+} );
+
+add_action( 'admin_post_zhdanov_autoupdate_opt', function () {
+	if ( ! current_user_can( 'update_plugins' ) ) {
+		wp_die( 'Нет прав.', 403 );
+	}
+	check_admin_referer( 'zhdanov_autoupdate_opt' );
+	update_option( 'zh_auto_update', empty( $_POST['zh_auto'] ) ? 0 : 1, false );
+	$msg = array( 'ok', empty( $_POST['zh_auto'] ) ? 'Автообновление выключено.' : 'Автообновление включено: проверка дважды в день.' );
+	if ( ! empty( $_POST['zh_now'] ) ) {
+		@set_time_limit( 300 ); // phpcs:ignore
+		$d   = zhdanov_su_auto();
+		$msg = array( 'ok', $d ? 'Готово: ' . implode( '; ', $d ) : 'Новых версий нет, стоит последняя.' );
+	}
+	set_transient( 'zh_su_msg_' . get_current_user_id(), $msg, 300 );
+	wp_safe_redirect( admin_url( 'admin.php?page=zhdanov-selfupdate' ) );
+	exit;
+} );
+
+add_action( 'zhdanov_su_page_after', function () {
+	$on   = (bool) get_option( 'zh_auto_update' );
+	$last = get_option( 'zh_auto_update_last' );
+	$info = function_exists( 'zhdanov_update_info' ) ? zhdanov_update_info() : array();
+	echo '<h2 style="margin-top:28px">Автообновление</h2>';
+	echo '<p>Плагин сам проверяет новые версии студии (GitHub zhdanovsites/zhdanov-core) дважды в день и ставит их. О каждом обновлении приходит сообщение в Telegram студии.';
+	if ( ! empty( $info['core']['version'] ) ) {
+		echo ' Последняя версия: <b>' . esc_html( $info['core']['version'] ) . '</b>.';
+	}
+	echo '</p><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
+	wp_nonce_field( 'zhdanov_autoupdate_opt' );
+	echo '<input type="hidden" name="action" value="zhdanov_autoupdate_opt">';
+	echo '<p><label><input type="checkbox" name="zh_auto" id="zh_auto" value="1"' . checked( $on, true, false ) . '> Обновляться автоматически</label></p>';
+	echo '<p><button class="button button-primary" name="zh_save" value="1">Сохранить</button> <button class="button" name="zh_now" id="zh_now" value="1">Сохранить и проверить сейчас</button></p></form>';
+	if ( is_array( $last ) ) {
+		echo '<p style="color:#555">Последнее автообновление: ' . esc_html( wp_date( 'd.m.Y H:i', $last['time'] ) . ' · ' . $last['text'] ) . '</p>';
+	}
+} );

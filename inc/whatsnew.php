@@ -11,6 +11,9 @@ defined( 'ABSPATH' ) || exit;
 /** Новое по версиям: [ версия => [ [текст, ссылка admin.php?page=…] ] ]. */
 function zhdanov_whatsnew_list() {
 	return array(
+		'0.8.2' => array(
+			array( 'Автообновление: галочка «Обновляться автоматически» в «Обновить по ссылке», проверка дважды в день, сообщение студии в Telegram.', 'zhdanov-selfupdate' ),
+		),
 		'0.8.1' => array(
 			array( 'Обновить по ссылке: новая версия плагина или темы ставится по ссылке на Google Drive, GitHub или zhdanovsites.com, без загрузки файла с компьютера.', 'zhdanov-selfupdate' ),
 		),
