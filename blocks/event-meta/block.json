@@ -1,0 +1,21 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/event-meta",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Афиша: дата, место, билеты",
+ "icon": "calendar-alt",
+ "description": "Карточка события: дата, время, площадка, цена, возраст, статус и кнопка билетов.",
+ "usesContext": [
+  "postId",
+  "postType"
+ ],
+ "supports": {
+  "html": false
+ },
+ "attributes": {}
+}

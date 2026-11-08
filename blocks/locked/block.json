@@ -1,0 +1,18 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/locked",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Закрытая часть (уроки)",
+ "icon": "lock",
+ "description": "Всё внутри видят только ученики: после оплаты курса (ссылка приходит на почту) или по коду доступа курса.",
+ "attributes": {
+  "courseId": { "type": "number", "default": 0 },
+  "note": { "type": "string", "default": "Уроки открываются после оплаты курса." }
+ },
+ "supports": { "html": false, "align": [ "wide" ] }
+}

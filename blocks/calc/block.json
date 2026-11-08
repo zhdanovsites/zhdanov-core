@@ -1,0 +1,22 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/calc",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Калькулятор стоимости",
+ "icon": "calculator",
+ "description": "Ползунки (площадь, количество, часы) и формула: посетитель сразу видит примерную цену и отправляет расчёт.",
+ "attributes": {
+  "title": { "type": "string", "default": "Рассчитайте стоимость" },
+  "fields": { "type": "string", "default": "s | Площадь, м² | 10 | 200 | 50 | 1\nk | Комнат | 1 | 6 | 2 | 1" },
+  "formula": { "type": "string", "default": "s * 3500 + k * 15000" },
+  "unit": { "type": "string", "default": "₽" },
+  "note": { "type": "string", "default": "Расчёт примерный: точную цену назовём после замера." },
+  "button": { "type": "string", "default": "Отправить расчёт" }
+ },
+ "supports": { "html": false, "anchor": true }
+}

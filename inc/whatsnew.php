@@ -1,0 +1,90 @@
+<?php
+/**
+ * «Что нового»: после обновления плагина администратор один раз видит короткую плашку
+ * с новыми возможностями и ссылками, где их найти. Закрывается кнопкой «Понятно».
+ *
+ * @package zhdanov-core
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+/** Новое по версиям: [ версия => [ [текст, ссылка admin.php?page=…] ] ]. */
+function zhdanov_whatsnew_list() {
+	return array(
+		'0.8.1' => array(
+			array( 'Обновить по ссылке: новая версия плагина или темы ставится по ссылке на Google Drive, GitHub или zhdanovsites.com, без загрузки файла с компьютера.', 'zhdanov-selfupdate' ),
+		),
+		'0.8.0' => array(
+			array( 'Вход по ссылке без пароля: для дизайнера, помощника или клиента на 1–30 дней, одноразовый по желанию, отзыв одной кнопкой.', 'zhdanov-access' ),
+			array( 'Админка для клиента: роль «Клиент сайта» правит тексты, фото, новости и туры, но не видит плагины, темы и настройки; без уведомлений об обновлениях.', 'zhdanov-core#client' ),
+			array( 'Европейский режим (GDPR): страна «ЕС / Великобритания» включает баннер с выбором категорий, журнал согласий, форму «удалить мои данные», шаблон политики на английском; Google Analytics 4 только после согласия.', 'zhdanov-core#contacts' ),
+			array( 'Журнал действий: кто входил, что публиковал, правил, удалял, какие плагины включал; ошибки PHP.', 'zhdanov-activity' ),
+			array( 'Режим «Сайт готовится»: посетители видят заглушку с контактами, админ видит сайт.', 'zhdanov-core#client' ),
+			array( 'Новые страницы сразу сообщаются Яндексу (IndexNow): туры и новости попадают в поиск быстрее.', 'zhdanov-health' ),
+			array( 'Вход с кодом из приложения (2FA): Профиль → «Вход с кодом из приложения», запасные коды на случай потери телефона.', 'profile.php#zh-2fa' ),
+			array( 'Поменяли адрес страницы, тура или раздела: старые ссылки сами ведут на новые (видно в «Переезде»).', 'zhdanov-migrate' ),
+			array( '«Копия» у любой записи: туров, услуг, событий, новостей.', '' ),
+			array( 'Отчёт разработчику: срок SSL, ошибки PHP, что меняли за неделю. «Продавец» и «Оферта» требуются, только если на сайте можно оплатить.', 'zhdanov-health#zh-report' ),
+		),
+		'0.7.7' => array(
+			array( 'Отчёт по кнопке собирается в фоне (хостинг не обрывает), видно, почему не ушёл в Telegram или на почту.', 'zhdanov-health#zh-report' ),
+		),
+		'0.7.6' => array(
+			array( 'Письма с сайта (заявки, отчёты) теперь уходят через почтовый ящик из настроек «Заявки с сайта»: Яндекс, Mail.ru, Gmail или свой сервер. Если письмо не ушло, Здоровье сайта покажет причину.', 'zhdanov-core#form' ),
+		),
+		'0.7.5' => array(
+			array( 'Данные концепта: у товаров и других строк со своим фото есть миниатюра и кнопка «Загрузить фото» (сохраняется под нужным именем).', 'zhdanov-cdata' ),
+			array( 'Перенос концепта: служебные страницы о самом концепте («Разбор») приходят без галочки, заглушки WordPress («Пример страницы», «Привет, мир!») при первом переносе уходят в корзину.', 'zhdanov-concept' ),
+			array( 'Отчёт разработчику: каждый понедельник сайт проверяет себя и присылает студии письмо и сообщение в Telegram. Настроить: Жданов → «Отчёт разработчику»; кнопка «Прислать отчёт сейчас» в Здоровье сайта.', 'zhdanov-health#zh-report' ),
+		),
+		'0.7.4' => array(
+			array( 'Повторный перенос концепта больше не стирает правки: страницы, шапку и подвал, которые меняли на сайте, плагин помечает «⚠ изменена на сайте» и не трогает.', 'zhdanov-concept' ),
+			array( 'Перед каждым переносом и «Заменить везде» сохраняется снимок. Ошиблись: «Вернуть как было» одной кнопкой.', 'zhdanov-concept#zh-snaps' ),
+			array( 'Страницы, которые в концепте не поменялись, при повторном переносе не перезаписываются.', '' ),
+		),
+		'0.7.3' => array(
+			array( 'Здоровье сайта → «Проверить страницы сайта»: битые фото и ссылки, заголовки и описания для поиска, фото без подписи.', 'zhdanov-health' ),
+			array( 'Журнал адресов «не найдено» с кнопкой переадресации.', 'zhdanov-health#notfound' ),
+		),
+	);
+}
+
+add_action( 'admin_notices', function () {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	$seen = (string) get_option( 'zhdanov_seen_version', '' );
+	if ( version_compare( $seen ? $seen : '0', ZHDANOV_CORE_VERSION, '>=' ) ) {
+		return;
+	}
+	$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+	if ( $screen && ! in_array( $screen->base, array( 'dashboard', 'plugins', 'update' ), true ) && false === strpos( (string) $screen->id, 'zhdanov' ) ) {
+		return; // только на Консоли, Плагинах и страницах «Жданов»: не мешаем в редакторе
+	}
+	$items = array();
+	foreach ( zhdanov_whatsnew_list() as $v => $list ) {
+		// при первой установке (seen пусто) показываем только текущую версию
+		if ( version_compare( $v, ZHDANOV_CORE_VERSION, '<=' ) && ( $seen ? version_compare( $v, $seen, '>' ) : $v === ZHDANOV_CORE_VERSION ) ) {
+			$items = array_merge( $items, $list );
+		}
+	}
+	if ( ! $items ) {
+		update_option( 'zhdanov_seen_version', ZHDANOV_CORE_VERSION, false );
+		return;
+	}
+	$ok = wp_nonce_url( admin_url( 'admin-post.php?action=zhdanov_whatsnew_ok' ), 'zhdanov_whatsnew_ok' );
+	echo '<div class="notice notice-info" style="border-left-color:#7c5cff"><p><b>Жданов ' . esc_html( ZHDANOV_CORE_VERSION ) . ': что нового</b></p><ul style="list-style:disc;margin-left:20px">';
+	foreach ( $items as $it ) {
+		echo '<li>' . esc_html( $it[0] ) . ( $it[1] ? ' <a href="' . esc_url( admin_url( false !== strpos( $it[1], '.php' ) ? $it[1] : 'admin.php?page=' . $it[1] ) ) . '">Открыть</a>' : '' ) . '</li>';
+	}
+	echo '</ul><p><a class="button button-primary" href="' . esc_url( $ok ) . '">Понятно</a></p></div>';
+} );
+
+add_action( 'admin_post_zhdanov_whatsnew_ok', function () {
+	check_admin_referer( 'zhdanov_whatsnew_ok' );
+	if ( current_user_can( 'manage_options' ) ) {
+		update_option( 'zhdanov_seen_version', ZHDANOV_CORE_VERSION, false );
+	}
+	wp_safe_redirect( wp_get_referer() ? wp_get_referer() : admin_url() );
+	exit;
+} );

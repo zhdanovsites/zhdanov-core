@@ -1,0 +1,58 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/collection",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Раздел: услуги, отзывы, альбомы, каталог",
+ "icon": "screenoptions",
+ "description": "Список записей раздела карточками.",
+ "attributes": {
+  "type": {
+   "type": "string",
+   "default": "zh_service"
+  },
+  "count": {
+   "type": "number",
+   "default": 6
+  },
+  "layout": {
+   "type": "string",
+   "default": "auto"
+  },
+  "filters": {
+   "type": "boolean",
+   "default": false
+  },
+  "showMoreLink": {
+   "type": "boolean",
+   "default": true
+  },
+  "useMainQuery": {
+   "type": "boolean",
+   "default": false
+  },
+  "excludeCurrent": {
+   "type": "boolean",
+   "default": false
+  },
+  "category": {
+   "type": "string",
+   "default": ""
+  },
+  "heading": {
+   "type": "string",
+   "default": ""
+  }
+ },
+ "supports": {
+  "align": [
+   "wide",
+   "full"
+  ],
+  "html": false
+ }
+}

@@ -1,0 +1,50 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/events",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Афиша: список событий",
+ "icon": "tickets-alt",
+ "description": "Ближайшие события карточками. Можно включить фильтр по месяцам и поиск.",
+ "attributes": {
+  "count": {
+   "type": "number",
+   "default": 6
+  },
+  "filters": {
+   "type": "boolean",
+   "default": false
+  },
+  "showMoreLink": {
+   "type": "boolean",
+   "default": true
+  },
+  "useMainQuery": {
+   "type": "boolean",
+   "default": false
+  },
+  "excludeCurrent": {
+   "type": "boolean",
+   "default": false
+  },
+  "category": {
+   "type": "string",
+   "default": ""
+  },
+  "heading": {
+   "type": "string",
+   "default": ""
+  }
+ },
+ "supports": {
+  "align": [
+   "wide",
+   "full"
+  ],
+  "html": false
+ }
+}

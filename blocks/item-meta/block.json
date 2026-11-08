@@ -1,0 +1,21 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/item-meta",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Раздел: цена, кнопка, детали",
+ "icon": "tag",
+ "description": "На странице услуги, товара, отзыва или альбома: цена, наличие, кнопка.",
+ "usesContext": [
+  "postId",
+  "postType"
+ ],
+ "supports": {
+  "html": false
+ },
+ "attributes": {}
+}

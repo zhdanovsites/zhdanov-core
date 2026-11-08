@@ -1,0 +1,21 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/compare",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Было / стало",
+ "icon": "image-flip-horizontal",
+ "description": "Два фото одного размера с ползунком: ремонт, макияж, реставрация, ретушь, дизайн.",
+ "attributes": {
+  "beforeId": { "type": "number", "default": 0 },
+  "afterId": { "type": "number", "default": 0 },
+  "before": { "type": "string", "default": "Было" },
+  "after": { "type": "string", "default": "Стало" },
+  "caption": { "type": "string", "default": "" }
+ },
+ "supports": { "html": false, "align": [ "wide" ] }
+}

@@ -1,0 +1,21 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/quiz",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Квиз «Подобрать программу»",
+ "icon": "forms",
+ "description": "3-6 вопросов с вариантами по одному на экране, в конце имя и телефон. Ответы приходят в заявке.",
+ "attributes": {
+  "title": { "type": "string", "default": "Подберём программу за 1 минуту" },
+  "intro": { "type": "string", "default": "Ответьте на несколько вопросов: пришлём подходящий вариант и цену." },
+  "questions": { "type": "string", "default": "Что для вас главное? | Спокойствие и сон | Уверенность | Отношения | Работа и деньги\nКакой формат удобнее? | Онлайн | Очно | Пока не знаю\nКогда хотите начать? | На этой неделе | В течение месяца | Просто присматриваюсь" },
+  "final": { "type": "string", "default": "Куда прислать подборку?" },
+  "button": { "type": "string", "default": "Получить подборку" }
+ },
+ "supports": { "html": false, "anchor": true, "align": [ "wide" ] }
+}

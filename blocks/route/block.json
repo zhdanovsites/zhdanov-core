@@ -1,0 +1,17 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/route",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Контакты: адрес и маршрут",
+ "icon": "location",
+ "description": "Адрес, часы, кнопки маршрута в Яндекс Картах, 2ГИС и Google. Карта загружается по кнопке.",
+ "supports": {
+  "html": false
+ },
+ "attributes": {}
+}

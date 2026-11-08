@@ -1,0 +1,17 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/share",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Поделиться",
+ "icon": "share",
+ "description": "Кнопки: Telegram, ВК, WhatsApp, копировать ссылку.",
+ "supports": {
+  "html": false
+ },
+ "attributes": {}
+}

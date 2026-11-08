@@ -1,0 +1,20 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/breadcrumbs",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Хлебные крошки",
+ "icon": "arrow-right-alt2",
+ "description": "Путь: Главная › Раздел › Страница. С разметкой для поиска.",
+ "supports": {
+  "align": [
+   "wide"
+  ],
+  "html": false
+ },
+ "attributes": {}
+}

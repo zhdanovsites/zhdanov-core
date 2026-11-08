@@ -1,0 +1,35 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/form",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Форма заявки",
+ "icon": "email-alt",
+ "description": "Имя, телефон, сообщение, согласие на обработку данных. Заявки приходят на почту и сохраняются в Консоль → Заявки.",
+ "attributes": {
+  "title": {
+   "type": "string",
+   "default": "Оставьте заявку"
+  },
+  "button": {
+   "type": "string",
+   "default": "Отправить"
+  },
+  "message": {
+   "type": "boolean",
+   "default": true
+  },
+  "email": {
+   "type": "boolean",
+   "default": false
+  }
+ },
+ "supports": {
+  "html": false,
+  "anchor": true
+ }
+}

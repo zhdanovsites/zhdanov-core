@@ -1,0 +1,19 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/tgfeed",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Лента Telegram-канала",
+ "icon": "megaphone",
+ "description": "Последние посты публичного канала текстом (без скриптов Telegram) и кнопка «Подписаться».",
+ "attributes": {
+  "channel": { "type": "string", "default": "" },
+  "count": { "type": "number", "default": 3 },
+  "title": { "type": "string", "default": "Свежее в нашем Telegram" }
+ },
+ "supports": { "html": false, "anchor": true, "align": [ "wide" ] }
+}

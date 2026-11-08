@@ -1,0 +1,22 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/rating",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Рейтинг на картах",
+ "icon": "star-filled",
+ "description": "Оценка и число отзывов с Яндекс Карт или 2ГИС (вписываются вручную, с датой проверки) и кнопки «Читать отзывы» и «Оставить отзыв».",
+ "attributes": {
+  "service": { "type": "string", "default": "Яндекс Картах" },
+  "rating": { "type": "string", "default": "" },
+  "count": { "type": "string", "default": "" },
+  "checked": { "type": "string", "default": "" },
+  "url": { "type": "string", "default": "" },
+  "reviewUrl": { "type": "string", "default": "" }
+ },
+ "supports": { "html": false, "align": [ "wide" ] }
+}

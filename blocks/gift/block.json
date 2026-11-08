@@ -1,0 +1,21 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/gift",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Подарочный сертификат",
+ "icon": "tickets-alt",
+ "description": "Выбор суммы и оплата онлайн. Код и сертификат для печати приходят покупателю на почту. Нужна настроенная оплата.",
+ "attributes": {
+  "title": { "type": "string", "default": "Подарочный сертификат" },
+  "text": { "type": "string", "default": "Подарите впечатления: сертификат придёт на почту сразу после оплаты, его можно распечатать или переслать." },
+  "sums": { "type": "string", "default": "3000, 5000, 10000" },
+  "custom": { "type": "boolean", "default": true },
+  "mode": { "type": "string", "default": "gift" }
+ },
+ "supports": { "html": false, "anchor": true }
+}

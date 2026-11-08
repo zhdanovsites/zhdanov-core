@@ -1,0 +1,17 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/footer-meta",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Низ подвала",
+ "icon": "editor-insertmore",
+ "description": "© год, политика конфиденциальности, пометка о Meta, подпись дизайнера.",
+ "supports": {
+  "html": false
+ },
+ "attributes": {}
+}

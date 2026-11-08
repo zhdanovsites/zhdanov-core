@@ -1,0 +1,22 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/builder",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Конструктор заказа",
+ "icon": "admin-generic",
+ "description": "«Собери торт», «Собери образ», «Собери букет»: варианты с доплатой, сумма считается сама, заказ уходит готовым текстом.",
+ "attributes": {
+  "title": { "type": "string", "default": "Соберите свой торт" },
+  "base": { "type": "number", "default": 0 },
+  "unit": { "type": "string", "default": "₽" },
+  "groups": { "type": "string", "default": "Вес: 1 кг 2500 | 1,5 кг 3600 | 2 кг 4700\nБисквит: Ванильный 0 | Шоколадный +200 | Красный бархат +400\nНачинка: Ягодная 0 | Солёная карамель +300 | Манго-маракуйя +350\nДекор: Без декора 0 | Свежие ягоды +500 | Надпись +200" },
+  "note": { "type": "string", "default": "Итоговую цену подтвердим в сообщении." },
+  "button": { "type": "string", "default": "Заказать" }
+ },
+ "supports": { "html": false, "anchor": true, "align": [ "wide" ] }
+}

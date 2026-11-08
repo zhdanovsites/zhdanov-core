@@ -1,0 +1,18 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/booking",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Онлайн-запись",
+ "icon": "calendar-alt",
+ "description": "Свободные места по дням из «Расписания»: выбрать время, оставить имя и телефон. Нужна галочка «Своя онлайн-запись» в настройках и число мест у занятий.",
+ "attributes": {
+  "title": { "type": "string", "default": "Запишитесь онлайн" },
+  "classId": { "type": "number", "default": 0 }
+ },
+ "supports": { "html": false, "anchor": true, "align": [ "wide" ] }
+}

@@ -1,0 +1,38 @@
+{
+ "$schema": "https://schemas.wp.org/trunk/block.json",
+ "name": "zhdanov/video",
+ "apiVersion": 3,
+ "category": "zhdanov",
+ "textdomain": "zhdanov-core",
+ "editorScript": "zhdanov-core-editor",
+ "style": "zhdanov-core-front",
+ "render": "file:./render.php",
+ "title": "Видео по клику",
+ "icon": "video-alt3",
+ "description": "YouTube, Rutube или VK Видео. Плеер загружается только после нажатия: страница остаётся быстрой.",
+ "attributes": {
+  "url": {
+   "type": "string",
+   "default": ""
+  },
+  "title": {
+   "type": "string",
+   "default": ""
+  },
+  "poster": {
+   "type": "string",
+   "default": ""
+  },
+  "posterId": {
+   "type": "number",
+   "default": 0
+  }
+ },
+ "supports": {
+  "align": [
+   "wide",
+   "full"
+  ],
+  "html": false
+ }
+}
