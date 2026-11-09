@@ -91,6 +91,10 @@ function zhdanov_health_checks() {
 		$il = get_option( 'zh_indexnow_last' );
 		$add( ! $il || in_array( (int) $il['code'], array( 200, 202 ), true ), 'Яндекс узнаёт о новых страницах сразу (IndexNow)', zhdanov_indexnow_status(), '', 'warn' );
 	}
+	$pcl = get_option( 'zh_pc_last' );
+	if ( is_array( $pcl ) ) {
+		$add( ! $pcl['bad'], 'Страницы в порядке после обновлений', 'Проверка ' . wp_date( 'd.m.Y H:i', $pcl['time'] ) . ': ' . implode( '; ', array_map( function ( $k, $v ) { return $k . ' ' . implode( ', ', $v ); }, array_keys( (array) $pcl['bad'] ), (array) $pcl['bad'] ) ), admin_url( 'admin.php?page=zhdanov-selfupdate' ), 'bad' );
+	}
 	if ( function_exists( 'zhdanov_backup_dir' ) ) {
 		$bf = glob( zhdanov_backup_dir() . '/recept-*.zip' );
 		$bt = $bf ? max( array_map( 'filemtime', $bf ) ) : 0;
