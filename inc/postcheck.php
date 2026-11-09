@@ -39,7 +39,7 @@ function zhdanov_pc_snap( $url ) {
 		'len'   => strlen( wp_strip_all_tags( preg_replace( '#<(script|style)[^>]*>.*?</\1>#is', '', $b ) ) ),
 		'title' => isset( $t[1] ) ? trim( html_entity_decode( wp_strip_all_tags( $t[1] ), ENT_QUOTES, 'UTF-8' ) ) : '',
 		'h1'    => (bool) preg_match( '#<h1[\s>]#i', $b ),
-		'fatal' => (bool) preg_match( '/critical error|критическая ошибка|Fatal error|Parse error|Ошибка базы данных|Error establishing a database/iu', $b ),
+		'fatal' => (bool) preg_match( '/There has been a critical error on this website|На сайте возникла критическая ошибка|На этом сайте возникла критическая ошибка|<b>Fatal error<\/b>:|<b>Parse error<\/b>:|^Fatal error: |Error establishing a database connection|Ошибка установки соединения с базой данных/imu', $b ),
 	);
 }
 

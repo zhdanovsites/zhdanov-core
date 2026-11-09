@@ -80,6 +80,9 @@ function zhdanov_cr_text( $month = '' ) {
 	$leads0 = zhdanov_cr_count_posts( 'zh_lead', $prev[1], $prev[2] );
 	$diff   = $leads0 ? ( $leads >= $leads0 ? ' (в прошлом месяце ' . $leads0 . ')' : ' (в прошлом месяце ' . $leads0 . ')' ) : '';
 	$lines[] = '📩 Заявок с сайта: ' . $leads . $diff;
+	if ( ! empty( $s['leads_done'] ) ) {
+		$lines[] = '☑️ Заявок отмечено «Готово»: ' . (int) $s['leads_done'];
+	}
 
 	$types = array_values( array_diff( get_post_types( array( 'public' => true ) ), array( 'attachment' ) ) );
 	$new   = zhdanov_cr_count_posts( $types, $from, $to );
