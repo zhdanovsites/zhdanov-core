@@ -91,6 +91,14 @@ function zhdanov_health_checks() {
 		$il = get_option( 'zh_indexnow_last' );
 		$add( ! $il || in_array( (int) $il['code'], array( 200, 202 ), true ), 'Яндекс узнаёт о новых страницах сразу (IndexNow)', zhdanov_indexnow_status(), '', 'warn' );
 	}
+	$sec = get_option( 'zh_sec_last' );
+	if ( function_exists( 'zhdanov_sec_scan' ) ) {
+		if ( is_array( $sec ) && $sec['bad'] ) {
+			$add( false, 'Проверка безопасности без находок', implode( '; ', $sec['bad'] ), admin_url( 'admin.php?page=zhdanov-security' ), 'bad' );
+		} else {
+			$add( is_array( $sec ) && $sec['time'] > time() - 10 * DAY_IN_SECONDS, 'Проверка безопасности без находок', is_array( $sec ) ? 'Последняя проверка давно: ' . wp_date( 'd.m.Y', $sec['time'] ) . '.' : 'Проверок ещё не было: Жданов → «Безопасность» → «Проверить сейчас».', admin_url( 'admin.php?page=zhdanov-security' ), 'warn' );
+		}
+	}
 	$pcl = get_option( 'zh_pc_last' );
 	if ( is_array( $pcl ) ) {
 		$add( ! $pcl['bad'], 'Страницы в порядке после обновлений', 'Проверка ' . wp_date( 'd.m.Y H:i', $pcl['time'] ) . ': ' . implode( '; ', array_map( function ( $k, $v ) { return $k . ' ' . implode( ', ', $v ); }, array_keys( (array) $pcl['bad'] ), (array) $pcl['bad'] ) ), admin_url( 'admin.php?page=zhdanov-selfupdate' ), 'bad' );
