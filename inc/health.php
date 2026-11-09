@@ -91,6 +91,9 @@ function zhdanov_health_checks() {
 		$il = get_option( 'zh_indexnow_last' );
 		$add( ! $il || in_array( (int) $il['code'], array( 200, 202 ), true ), 'Яндекс узнаёт о новых страницах сразу (IndexNow)', zhdanov_indexnow_status(), '', 'warn' );
 	}
+	if ( function_exists( 'zhdanov_cache_on' ) ) {
+		$add( zhdanov_cache_on(), 'Быстрая загрузка страниц включена', 'Включите «Быструю загрузку страниц (кеш)» в настройках: страницы открываются в 2–5 раз быстрее, это важно для Яндекса и Lighthouse.', admin_url( 'admin.php?page=zhdanov-core#studio' ), 'warn' );
+	}
 	$sec = get_option( 'zh_sec_last' );
 	if ( function_exists( 'zhdanov_sec_scan' ) ) {
 		if ( is_array( $sec ) && $sec['bad'] ) {
