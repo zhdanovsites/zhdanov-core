@@ -11,6 +11,9 @@ defined( 'ABSPATH' ) || exit;
 /** Новое по версиям: [ версия => [ [текст, ссылка admin.php?page=…] ] ]. */
 function zhdanov_whatsnew_list() {
 	return array(
+		'0.9.6' => array(
+			array( 'Готовность к нейросетям (Алиса, GigaChat, ChatGPT): сайт сам отдаёт llms.txt, поле «Карточка в Яндекс Картах или 2ГИС» (попадает в разметку), в Здоровье сайта группа «Нейросети».', 'zhdanov-health' ),
+		),
 		'0.9.5' => array(
 			array( 'В «Помощи» раздел про статусы заявок.', 'zhdanov-help' ),
 		),

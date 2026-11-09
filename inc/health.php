@@ -202,6 +202,9 @@ function zhdanov_health_checks() {
 		$add( (bool) $withcap, 'Онлайн-запись: у занятий указаны места', 'Запись включена, но ни у одного занятия нет «Мест для онлайн-записи»: записаться нельзя.', admin_url( 'edit.php?post_type=zh_class' ) );
 	}
 	$add( (bool) $opt( 'metrika' ), 'Подключена Яндекс Метрика', 'Без неё не видно, откуда люди и сколько заявок. Номер счётчика: metrika.yandex.ru.', $set . '#stats', 'warn' );
+	foreach ( (array) apply_filters( 'zhdanov_health_items', array() ) as $it ) {
+		$add( $it[0], $it[1], $it[2], $it[3] ?? '', $it[4] ?? 'bad' );
+	}
 	return $c;
 }
 
