@@ -503,6 +503,10 @@ function zhdanov_backup_make() {
 		$body .= "--$bnd\r\nContent-Disposition: form-data; name=\"caption\"\r\n\r\n💾 Копия сайта " . get_bloginfo( 'name' ) . ' (' . wp_parse_url( home_url(), PHP_URL_HOST ) . ') от ' . wp_date( 'j F Y' ) . ". Восстановить: Жданов → Рецепт сайта → Загрузить.\r\n";
 		$body .= "--$bnd\r\nContent-Disposition: form-data; name=\"document\"; filename=\"" . basename( $file ) . "\"\r\nContent-Type: application/zip\r\n\r\n" . file_get_contents( $file ) . "\r\n--$bnd--\r\n"; // phpcs:ignore
 		$r    = wp_remote_post( 'https://api.telegram.org/bot' . rawurlencode( $t[0] ) . '/sendDocument', array( 'timeout' => 60, 'headers' => array( 'Content-Type' => 'multipart/form-data; boundary=' . $bnd ), 'body' => $body ) );
+		if ( is_wp_error( $r ) ) { // повтор: хостинг иногда не дозванивается с первого раза
+			sleep( 3 );
+			$r = wp_remote_post( 'https://api.telegram.org/bot' . rawurlencode( $t[0] ) . '/sendDocument', array( 'timeout' => 60, 'headers' => array( 'Content-Type' => 'multipart/form-data; boundary=' . $bnd ), 'body' => $body ) );
+		}
 		$j    = is_wp_error( $r ) ? null : json_decode( wp_remote_retrieve_body( $r ), true );
 		$status[] = $who . ': ' . ( ! empty( $j['ok'] ) ? 'отправлена в Telegram' : 'не ушла (' . ( is_wp_error( $r ) ? $r->get_error_message() : ( $j['description'] ?? 'ответ ' . wp_remote_retrieve_response_code( $r ) ) ) . ')' );
 	}

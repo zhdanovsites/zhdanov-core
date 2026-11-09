@@ -3,7 +3,7 @@
  * Plugin Name: Жданов: ядро
  * Plugin URI: https://zhdanovsites.com/
  * Description: Компаньон «Темы Жданов»: Афиша, контакты и маршрут, Яндекс Метрика с согласием на cookie (152-ФЗ), нижняя панель на телефоне, хлебные крошки, разметка Schema.org. Контент живёт в плагине и не пропадает при смене темы.
- * Version: 0.8.7
+ * Version: 0.8.8
  * Requires at least: 6.7
  * Requires PHP: 7.4
  * Author: Zhdanov Sites
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ZHDANOV_CORE_VERSION', '0.8.7' );
+define( 'ZHDANOV_CORE_VERSION', '0.8.8' );
 define( 'ZHDANOV_CORE_FILE', __FILE__ );
 define( 'ZHDANOV_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ZHDANOV_CORE_URL', plugin_dir_url( __FILE__ ) );
@@ -66,6 +66,7 @@ require_once ZHDANOV_CORE_DIR . 'inc/selfupdate.php';
 require_once ZHDANOV_CORE_DIR . 'inc/feedback.php';
 require_once ZHDANOV_CORE_DIR . 'inc/intake.php';
 require_once ZHDANOV_CORE_DIR . 'inc/postcheck.php';
+require_once ZHDANOV_CORE_DIR . 'inc/clientreport.php';
 
 register_activation_hook( __FILE__, function () {
 	zhdanov_core_register_events();

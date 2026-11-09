@@ -366,6 +366,10 @@ function zhdanov_studio_report_send() {
 			$text = mb_substr( $text, 0, 3850 ) . "\n…";
 		}
 		$r = wp_remote_post( 'https://api.telegram.org/bot' . rawurlencode( $token ) . '/sendMessage', array( 'timeout' => 15, 'body' => array( 'chat_id' => $chat, 'text' => $text, 'disable_web_page_preview' => 'true' ) ) );
+		if ( is_wp_error( $r ) ) { // повтор: хостинг иногда не дозванивается с первого раза
+			sleep( 2 );
+			$r = wp_remote_post( 'https://api.telegram.org/bot' . rawurlencode( $token ) . '/sendMessage', array( 'timeout' => 15, 'body' => array( 'chat_id' => $chat, 'text' => $text, 'disable_web_page_preview' => 'true' ) ) );
+		}
 		if ( is_wp_error( $r ) ) {
 			$res['tg']     = false;
 			$res['tg_err'] = 'сайт не смог подключиться к Telegram (' . $r->get_error_message() . '). Возможно, хостинг не пускает к api.telegram.org: спросите поддержку хостинга';

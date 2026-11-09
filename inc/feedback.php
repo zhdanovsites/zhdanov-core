@@ -150,6 +150,9 @@ add_action( 'rest_api_init', function () {
 				return array( 'ok' => true );
 			}
 			if ( in_array( $st, array( 'new', 'work', 'done' ), true ) ) {
+				if ( 'done' === $st && 'done' !== get_post_meta( $p->ID, '_zh_status', true ) && function_exists( 'zhdanov_stat' ) ) {
+					zhdanov_stat( 'notes_done' );
+				}
 				update_post_meta( $p->ID, '_zh_status', $st );
 			}
 			return zhdanov_fb_out( get_post( $p->ID ) );

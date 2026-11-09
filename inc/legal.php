@@ -129,14 +129,19 @@ add_action( 'zhdanov_lead_saved', function ( $id, $data ) {
 }, 10, 2 );
 
 function zhdanov_core_tg_send( $token, $chat, $text ) {
-	return wp_remote_post(
-		'https://api.telegram.org/bot' . rawurlencode( $token ) . '/sendMessage',
-		array(
-			'timeout'  => 6,
-			'blocking' => true,
-			'body'     => array( 'chat_id' => $chat, 'text' => mb_substr( $text, 0, 4000 ), 'disable_web_page_preview' => 'true' ),
-		)
+	$args = array(
+		'timeout'  => 8,
+		'blocking' => true,
+		'body'     => array( 'chat_id' => $chat, 'text' => mb_substr( $text, 0, 4000 ), 'disable_web_page_preview' => 'true' ),
 	);
+	$url  = 'https://api.telegram.org/bot' . rawurlencode( $token ) . '/sendMessage';
+	$r    = wp_remote_post( $url, $args );
+	// хостинг иногда не дозванивается до Telegram с первого раза: повтор через 2 с
+	if ( is_wp_error( $r ) || (int) wp_remote_retrieve_response_code( $r ) >= 500 ) {
+		sleep( 2 );
+		$r = wp_remote_post( $url, $args );
+	}
+	return $r;
 }
 
 /** Номер чата: последний, кто написал боту. */

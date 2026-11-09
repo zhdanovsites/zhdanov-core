@@ -80,6 +80,9 @@ add_action( 'shutdown', function () {
 		'body'    => wp_json_encode( array( 'host' => $host, 'key' => zhdanov_indexnow_key(), 'keyLocation' => home_url( '/' . zhdanov_indexnow_key() . '.txt' ), 'urlList' => array_slice( $urls, 0, 1000 ) ) ),
 	) );
 	$code = is_wp_error( $r ) ? 0 : (int) wp_remote_retrieve_response_code( $r );
+	if ( function_exists( 'zhdanov_stat' ) && ! is_wp_error( $r ) && $code < 400 ) {
+		zhdanov_stat( 'indexnow', count( $urls ) );
+	}
 	update_option( 'zh_indexnow_last', array( 'time' => time(), 'n' => count( $urls ), 'code' => $code, 'err' => is_wp_error( $r ) ? $r->get_error_message() : ( $code >= 400 ? mb_substr( wp_remote_retrieve_body( $r ), 0, 160 ) : '' ) ), false );
 }, 5 );
 

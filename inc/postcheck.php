@@ -83,6 +83,12 @@ function zhdanov_pc_run( $why = '' ) {
 		}
 	}
 	update_option( 'zh_pc_base', $new, false );
+	if ( function_exists( 'zhdanov_stat' ) ) {
+		zhdanov_stat( 'checks' );
+		if ( $bad ) {
+			zhdanov_stat( 'check_bad' );
+		}
+	}
 	update_option( 'zh_pc_last', array( 'time' => time(), 'why' => $why, 'bad' => $bad, 'n' => count( $new ) ), false );
 	if ( $bad ) {
 		$lines = array();
