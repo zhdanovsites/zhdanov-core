@@ -123,9 +123,16 @@ function zhdanov_sec_uploads_php() {
 }
 
 function zhdanov_sec_new_admins() {
+	$known = get_option( 'zh_sec_admins_known' );
+	$ids   = array_map( 'intval', get_users( array( 'role' => 'administrator', 'number' => 100, 'fields' => 'ID' ) ) );
+	if ( ! is_array( $known ) ) { // первая проверка: нынешние администраторы считаются своими
+		update_option( 'zh_sec_admins_known', $ids, false );
+		return array();
+	}
 	$out = array();
-	foreach ( get_users( array( 'role' => 'administrator', 'number' => 50 ) ) as $u ) {
-		if ( strtotime( $u->user_registered ) > time() - 14 * DAY_IN_SECONDS ) {
+	foreach ( array_diff( $ids, array_map( 'intval', $known ) ) as $id ) {
+		$u = get_userdata( $id );
+		if ( $u ) {
 			$out[] = $u->user_login . ' (' . wp_date( 'd.m.Y', strtotime( $u->user_registered ) ) . ')';
 		}
 	}
@@ -177,7 +184,7 @@ function zhdanov_sec_problems( $res ) {
 		$bad[] = 'PHP-файлы в папке загрузок (там их быть не должно): ' . implode( ', ', array_slice( $res['uploads'], 0, 5 ) );
 	}
 	if ( ! empty( $res['admins'] ) ) {
-		$bad[] = 'Новые администраторы за 14 дней: ' . implode( ', ', $res['admins'] ) . '. Если это не вы, срочно проверьте.';
+		$bad[] = 'Новые администраторы: ' . implode( ', ', $res['admins'] ) . '. Если это не вы, срочно проверьте; если свои, нажмите «Это свои».';
 	}
 	return $bad;
 }
@@ -205,6 +212,9 @@ add_action( 'admin_post_zhdanov_security', function () {
 		wp_die( 'Нет прав.', 403 );
 	}
 	check_admin_referer( 'zhdanov_security' );
+	if ( ! empty( $_POST['zh_ack'] ) ) {
+		update_option( 'zh_sec_admins_known', array_map( 'intval', get_users( array( 'role' => 'administrator', 'number' => 100, 'fields' => 'ID' ) ) ), false );
+	}
 	zhdanov_sec_scan( true );
 	wp_safe_redirect( admin_url( 'admin.php?page=zhdanov-security&done=1' ) );
 	exit;
@@ -213,7 +223,7 @@ add_action( 'admin_post_zhdanov_security', function () {
 function zhdanov_sec_page() {
 	$l = get_option( 'zh_sec_last' );
 	echo '<div class="wrap"><h1>Безопасность</h1>';
-	echo '<p>Раз в неделю плагин сверяет файлы WordPress и плагинов с эталоном wordpress.org, ищет PHP-файлы в папке загрузок (частый признак взлома) и новых администраторов. Если что-то нашлось, студии приходит сообщение в Telegram. Вход защищают: ограничение попыток, вход с кодом из приложения (Профиль), выключенный XML-RPC.</p>';
+	echo '<p>Раз в неделю плагин сверяет файлы WordPress и плагинов с эталоном wordpress.org, ищет PHP-файлы в папке загрузок (частый признак взлома) и новых администраторов (тех, кто был на первой проверке, считает своими). Если что-то нашлось, студии приходит сообщение в Telegram. Вход защищают: ограничение попыток, вход с кодом из приложения (Профиль), выключенный XML-RPC.</p>';
 	echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
 	wp_nonce_field( 'zhdanov_security' );
 	echo '<input type="hidden" name="action" value="zhdanov_security">';
@@ -228,6 +238,11 @@ function zhdanov_sec_page() {
 			echo '<div class="notice notice-error inline" id="zh-sec-bad"><ul style="list-style:disc;margin-left:1.5em">';
 			foreach ( $l['bad'] as $b ) {
 				echo '<li>' . esc_html( $b ) . '</li>';
+			}
+			if ( ! empty( $l['admins'] ) ) {
+				echo '</ul><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" style="margin:0 0 8px">';
+				wp_nonce_field( 'zhdanov_security' );
+				echo '<input type="hidden" name="action" value="zhdanov_security"><input type="hidden" name="zh_ack" value="1"><button class="button" id="zh-sec-ack">Это свои администраторы</button></form><ul style="display:none">';
 			}
 			echo '</ul><p>Что делать: напишите студии. Изменённые файлы WordPress чинит «Обновления → Переустановить», плагины: удалить и поставить заново; PHP в загрузках удалить, сменить пароли администраторов.</p></div>';
 		} else {
