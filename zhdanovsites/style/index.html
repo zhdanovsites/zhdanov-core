@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Какой стиль сайта вам ближе: квиз за 1 минуту | Zhdanov Sites</title>
+<meta name="description" content="Выберите 8 раз из двух вариантов и получите стиль своего будущего сайта: цвета, шрифты, примеры работ. Бесплатно, за минуту.">
+<link rel="canonical" href="https://zhdanovsites.com/style/">
+<meta property="og:title" content="Какой стиль сайта вам ближе">
+<meta property="og:description" content="8 вопросов, 1 минута: цвета, шрифты и похожие работы для вашего будущего сайта.">
+<meta property="og:url" content="https://zhdanovsites.com/style/">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon.png">
+<link rel="preload" href="/fonts/cormorant-garamond-cyrillic-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=43">
+<style>
+body{margin:0;background:var(--bg,#121312);color:var(--ink,#f6efe2);font-family:var(--sans,system-ui)}
+.q{max-width:980px;margin:0 auto;padding:28px 18px 70px}
+.q-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:26px}
+.q-top a{color:var(--soft,#b9b4ab);text-decoration:none;font-size:15px}
+.q-brand{font:600 22px/1 var(--serif,Georgia,serif);color:var(--ink,#f6efe2)!important}
+.q h1{font:600 clamp(34px,6vw,54px)/1.05 var(--serif,Georgia,serif);margin:0 0 12px}
+.q h1 em{color:var(--gold,#e7b866)}
+.q-lead{color:var(--soft,#b9b4ab);max-width:640px;margin:0 0 26px;font-size:17px;line-height:1.55}
+.q-prog{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--mute,#85827b);margin:0 0 10px}
+.q-bar{height:5px;border-radius:3px;background:var(--line,#2e2f2d);overflow:hidden;margin-bottom:22px}.q-bar i{display:block;height:100%;width:0;background:var(--gold,#e7b866);transition:width .4s ease}
+.q-q{font:600 28px/1.2 var(--serif,Georgia,serif);margin:0 0 16px}
+.q-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.q-opt{appearance:none;border:2px solid var(--line,#2e2f2d);background:var(--card,#1f201f);border-radius:20px;padding:12px;cursor:pointer;text-align:left;color:var(--ink,#f6efe2);font:inherit;transition:border-color .2s,transform .2s}
+.q-opt:hover{border-color:var(--gold,#e7b866);transform:translateY(-2px)}
+.q-opt:focus-visible{outline:2px solid var(--gold2,#f3d69f);outline-offset:3px}
+.q-opt>b{display:block;margin:12px 4px 4px;font-size:17px}.q-opt>span{display:block;margin:0 4px 4px;color:var(--soft,#b9b4ab);font-size:14px}
+.q-back{appearance:none;background:none;border:0;color:var(--soft,#b9b4ab);font:inherit;cursor:pointer;margin-top:18px;padding:8px 0}
+/* мини-витрина сайта */
+.m{--b:#fff;--t:#1d1d1d;--a:#c0392b;--s:#ececec;--f:Georgia,serif;--r:10px;--g:14px;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:var(--b);color:var(--t);display:flex;flex-direction:column;padding:var(--g);gap:calc(var(--g)*.7);font-family:var(--f)}
+.m .nav{display:flex;justify-content:space-between;align-items:center;font:600 11px/1 var(--sans,system-ui)}
+.m .nav i{display:flex;gap:6px}.m .nav i u{display:block;width:22px;height:5px;border-radius:3px;background:var(--t);opacity:.35}
+.m .hd{font-size:clamp(15px,2.6vw,24px);line-height:1.05;font-weight:600}
+.m .row{display:flex;gap:calc(var(--g)*.6);flex:1}
+.m .pic{flex:1.2;border-radius:var(--r);background:var(--pic,linear-gradient(135deg,var(--a),var(--s)))}
+.m .col{flex:1;display:flex;flex-direction:column;gap:6px}
+.m .ln{height:6px;border-radius:3px;background:var(--t);opacity:.22}.m .ln.s{width:70%}
+.m .bt{margin-top:auto;align-self:flex-start;background:var(--a);color:var(--b);font:700 10px/1 var(--sans,system-ui);padding:7px 12px;border-radius:var(--r)}
+/* результат */
+.r-card{background:var(--card,#1f201f);border:1px solid var(--line,#2e2f2d);border-radius:20px;padding:22px}
+.r-name{font:600 clamp(30px,5vw,44px)/1.1 var(--serif,Georgia,serif);margin:6px 0 10px}.r-name em{color:var(--gold,#e7b866)}
+.r-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:18px;margin-top:18px}
+.r-pal{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}.r-pal span{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:var(--mute,#85827b)}.r-pal i{width:46px;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.12)}
+.r-tags{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 0}.r-tags span{border:1px solid var(--line,#2e2f2d);border-radius:999px;padding:5px 11px;font-size:14px;color:var(--soft,#b9b4ab)}
+.r-h{font:600 24px/1.2 var(--serif,Georgia,serif);margin:28px 0 12px}
+.r-works{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.r-works a{display:block;border:1px solid var(--line,#2e2f2d);border-radius:16px;padding:14px;text-decoration:none;color:var(--ink,#f6efe2);background:var(--card,#1f201f)}.r-works a:hover{border-color:var(--gold,#e7b866)}
+.r-works b{display:block;margin-bottom:4px}.r-works span{color:var(--soft,#b9b4ab);font-size:14px}
+.r-form{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.r-form input[type=text]{border:1px solid var(--line,#2e2f2d);background:var(--bg2,#1a1b1a);color:var(--ink,#f6efe2);border-radius:999px;padding:12px 18px;font:inherit;min-width:0}
+.r-form label.c{grid-column:1/-1;font-size:14px;color:var(--soft,#b9b4ab);display:flex;gap:8px;align-items:flex-start}
+.r-form label.c a{color:var(--gold,#e7b866)}
+.r-form .row{grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.r-msg{color:var(--gold2,#f3d69f)}
+.r-again{appearance:none;background:none;border:1px solid var(--line,#2e2f2d);color:var(--ink,#f6efe2);border-radius:999px;padding:11px 18px;font:inherit;cursor:pointer}
+.hp{position:absolute;left:-9999px}
+@media (max-width:700px){.q-pair{grid-template-columns:1fr}.r-grid,.r-works,.r-form{grid-template-columns:1fr}.q-q{font-size:24px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="q">
+  <div class="q-top"><a class="q-brand" href="/">Zhdanov Sites</a><a href="/#check">Проверить свой сайт →</a></div>
+  <section id="intro">
+    <h1>Какой стиль сайта <em>вам ближе</em>?</h1>
+    <p class="q-lead">8 раз выберите из двух вариантов, что больше нравится. За минуту получите стиль своего будущего сайта: цвета, шрифты и наши работы в похожем духе. Это бриф для дизайнера: так новый сайт сразу попадёт в ваш вкус.</p>
+    <button class="btn" id="start" type="button">Начать</button>
+  </section>
+  <section id="quiz" hidden aria-live="polite">
+    <div class="q-prog"><span id="qn">Вопрос 1 из 8</span><span>Выберите, что ближе</span></div>
+    <div class="q-bar"><i id="qbar"></i></div>
+    <h2 class="q-q" id="qq"></h2>
+    <div class="q-pair" id="qpair"></div>
+    <button class="q-back" id="qback" type="button" hidden>← Назад</button>
+  </section>
+  <section id="result" hidden></section>
+</main>
+<script>
+(function(){
+'use strict';
+/* Пары: у каждого варианта свои переменные мини-витрины и что он говорит о вкусе */
+var Q=[
+ {q:'Светлый или тёмный?',d:'theme',a:{v:'light',t:'Светлый',s:'Чисто, легко читать днём',m:'--b:#fbf8f3;--t:#1f1d1a;--a:#b5512f;--s:#e9e1d4'},b:{v:'dark',t:'Тёмный',s:'Дорого, глубоко, вечерний свет',m:'--b:#141414;--t:#f3ede2;--a:#d9a95b;--s:#2a2a2a'}},
+ {q:'Сколько воздуха?',d:'density',a:{v:'air',t:'Много воздуха',s:'Спокойно, крупно, мало на экране',m:'--g:22px;--b:#fff;--t:#222;--a:#2f5d50;--s:#e7eeea'},b:{v:'dense',t:'Насыщенно',s:'Много информации сразу',m:'--g:8px;--b:#fff;--t:#222;--a:#2f5d50;--s:#e7eeea'}},
+ {q:'Какие заголовки?',d:'type',a:{v:'serif',t:'С засечками',s:'Классика, книга, история',m:'--f:Georgia,\'Times New Roman\',serif;--b:#f7f3ec;--t:#2a2420;--a:#8a5a2b;--s:#e6dccd'},b:{v:'sans',t:'Без засечек',s:'Современно, просто, технологично',m:'--f:system-ui,-apple-system,\'Segoe UI\',sans-serif;--b:#f6f7f9;--t:#15181d;--a:#2f6bff;--s:#dfe6f3'}},
+ {q:'Цвета',d:'color',a:{v:'calm',t:'Спокойные',s:'Пастель, природные оттенки',m:'--b:#f4f1ec;--t:#2d2b28;--a:#8fa39a;--s:#dcd6cc'},b:{v:'bright',t:'Яркие',s:'Сочно, заметно, энергично',m:'--b:#fff8ef;--t:#1d1a2e;--a:#ff4d6d;--s:#ffd166'}},
+ {q:'Настроение',d:'tone',a:{v:'strict',t:'Строго',s:'Деловой, сдержанный, точный',m:'--b:#ffffff;--t:#111827;--a:#1f2937;--s:#d1d5db;--r:2px'},b:{v:'warm',t:'Тепло',s:'Дружелюбно, по-человечески',m:'--b:#fff7ed;--t:#3b2a1d;--a:#e0793b;--s:#fde2c7;--r:16px'}},
+ {q:'Углы и формы',d:'shape',a:{v:'sharp',t:'Прямые',s:'Чёткие линии, архитектура',m:'--r:0px;--b:#f5f5f4;--t:#1c1917;--a:#57534e;--s:#d6d3d1'},b:{v:'round',t:'Скруглённые',s:'Мягко, уютно, современно',m:'--r:22px;--b:#f5f5f4;--t:#1c1917;--a:#57534e;--s:#d6d3d1'}},
+ {q:'Главное на первом экране',d:'visual',a:{v:'photo',t:'Большое фото',s:'Люди, место, результат',m:'--pic:linear-gradient(160deg,#c9b8a6 0%,#7d6450 55%,#3b2f26 100%);--b:#faf7f2;--t:#2b231c;--a:#7d6450;--s:#e8dfd3'},b:{v:'graphic',t:'Графика и цифры',s:'Схемы, иконки, факты',m:'--pic:repeating-linear-gradient(45deg,#e7eefc 0 10px,#d5e1fa 10px 20px);--b:#fbfcff;--t:#162033;--a:#3557d6;--s:#d5e1fa'}},
+ {q:'Как сайт должен звучать',d:'feel',a:{v:'classic',t:'Классика',s:'Надёжно, проверено временем',m:'--f:Georgia,serif;--b:#f3efe6;--t:#28231b;--a:#7b2d26;--s:#e0d6c3;--r:4px'},b:{v:'modern',t:'Смело и ново',s:'Неожиданно, запоминается',m:'--f:system-ui,sans-serif;--b:#0f0f12;--t:#f4f4f5;--a:#a3e635;--s:#27272a;--r:18px'}}
+];
+var NAMES={theme:{light:'светлый',dark:'тёмный'},density:{air:'много воздуха',dense:'насыщенный'},type:{serif:'заголовки с засечками',sans:'заголовки без засечек'},color:{calm:'спокойные цвета',bright:'яркие цвета'},tone:{strict:'строгий',warm:'тёплый'},shape:{sharp:'прямые углы',round:'скруглённые углы'},visual:{photo:'большое фото',graphic:'графика и цифры'},feel:{classic:'классика',modern:'смело и ново'}};
+/* Наши работы и их стиль (для «похожие работы») */
+var WORKS=[
+ {n:'«Воздух» Наты Ярославской',u:'https://vozduh-cakes.pages.dev/',d:'тёмный «ювелирный», торты',s:{theme:'dark',type:'serif',tone:'warm',feel:'classic',visual:'photo'}},
+ {n:'Ольга Степанова · Сейдр Ма',u:'https://seidrma.pages.dev/',d:'тёмно-золотой, эзотерика',s:{theme:'dark',type:'serif',feel:'classic',color:'calm'}},
+ {n:'The Faces Spa',u:'https://thefaces.pages.dev/ru/',d:'спокойный спа, три языка',s:{theme:'light',density:'air',color:'calm',tone:'warm',visual:'photo',shape:'round'}},
+ {n:'English by Guzel',u:'https://guzel-school.pages.dev/',d:'яркая онлайн-школа',s:{theme:'light',color:'bright',tone:'warm',type:'sans',feel:'modern',shape:'round'}},
+ {n:'Белфуд «Маленькое счастье»',u:'https://belfood.pages.dev/',d:'яркий, цвета упаковки',s:{theme:'light',color:'bright',type:'sans',feel:'modern',visual:'graphic'}},
+ {n:'БКЗ «Октябрьский»',u:'https://bkz-oktyabrsky.pages.dev/',d:'афиша, строго и чётко',s:{type:'sans',tone:'strict',density:'dense',shape:'sharp',visual:'photo'}},
+ {n:'Школа «Тутти»',u:'https://tutti-spb.pages.dev/',d:'светлая, классическая школа',s:{theme:'light',type:'serif',feel:'classic',tone:'strict'}},
+ {n:'Артём Белокуров · коуч',u:'https://belokurov-coach.pages.dev/',d:'яркий личный бренд',s:{color:'bright',type:'sans',feel:'modern',tone:'warm',visual:'photo'}},
+ {n:'BMS7: тренажёры',u:'https://bms7.pages.dev/',d:'производство, каталог',s:{type:'sans',tone:'strict',density:'dense',visual:'graphic',theme:'light'}},
+ {n:'Елена Навоенко',u:'https://navoenko.pages.dev/',d:'графитовый, крупный портрет',s:{theme:'dark',tone:'warm',visual:'photo',density:'air'}}
+];
+function mini(m,lbl){return '<div class="m" style="'+m+'" aria-hidden="true"><div class="nav">'+lbl+'<i><u></u><u></u><u></u></i></div><div class="hd">Ваш сайт</div><div class="row"><div class="pic"></div><div class="col"><div class="ln"></div><div class="ln s"></div><div class="ln"></div><div class="bt">Записаться</div></div></div></div>';}
+var i=0,ans={},$=function(id){return document.getElementById(id)};
+function show(){
+ var x=Q[i];$('qn').textContent='Вопрос '+(i+1)+' из '+Q.length;$('qbar').style.width=(100*i/Q.length)+'%';$('qq').textContent=x.q;
+ $('qpair').innerHTML=['a','b'].map(function(k){var o=x[k];return '<button class="q-opt" type="button" data-v="'+o.v+'" aria-label="'+o.t+': '+o.s+'">'+mini(o.m,'Логотип')+'<b>'+o.t+'</b><span>'+o.s+'</span></button>'}).join('');
+ $('qback').hidden=i===0;
+ var f=$('qpair').querySelector('button');if(f&&i>0)f.focus();
+}
+$('qpair').addEventListener('click',function(e){var b=e.target.closest('.q-opt');if(!b)return;ans[Q[i].d]=b.dataset.v;i++;if(i<Q.length)show();else done();});
+$('qback').addEventListener('click',function(){if(i>0){i--;show();}});
+$('start').addEventListener('click',function(){$('intro').hidden=true;$('quiz').hidden=false;show();try{ym(114037897,'reachGoal','style_start')}catch(e){}});
+function palette(){
+ var d=ans.theme==='dark',b=ans.color==='bright',w=ans.tone==='warm';
+ if(d&&!b)return w?[['#141312','Фон'],['#f3ece0','Текст'],['#d9a95b','Акцент'],['#2a2725','Карточки']]:[['#111418','Фон'],['#e8edf2','Текст'],['#7aa2c9','Акцент'],['#1f252c','Карточки']];
+ if(d&&b)return [['#0f0f12','Фон'],['#f4f4f5','Текст'],['#a3e635','Акцент'],['#ff4d6d','Второй акцент']];
+ if(b)return w?[['#fff8ef','Фон'],['#1d1a2e','Текст'],['#ff6b3d','Акцент'],['#ffd166','Второй акцент']]:[['#f7f9ff','Фон'],['#111827','Текст'],['#2f6bff','Акцент'],['#00c2a8','Второй акцент']];
+ return w?[['#faf6f0','Фон'],['#2d2620','Текст'],['#b5643b','Акцент'],['#e9dfd1','Карточки']]:[['#f6f7f8','Фон'],['#1c2128','Текст'],['#3e6b5a','Акцент'],['#dde3e1','Карточки']];
+}
+function fonts(){return ans.type==='serif'?(ans.feel==='modern'?'Заголовки: Playfair Display, текст: Manrope':'Заголовки: Cormorant Garamond, текст: Manrope'):(ans.feel==='classic'?'Заголовки: Montserrat, текст: PT Sans':'Заголовки: Unbounded или Onest, текст: Onest')}
+function name(){
+ var base=ans.type==='serif'?(ans.theme==='dark'?'Тёмная <em>классика</em>':'Светлая <em>классика</em>'):(ans.theme==='dark'?'Тёмный <em>модерн</em>':'Светлый <em>модерн</em>');
+ var add=ans.color==='bright'?' с яркими акцентами':(ans.tone==='warm'?' с тёплым светом':' со строгой графикой');
+ return base+add;
+}
+function about(){
+ var p=[];p.push(ans.density==='air'?'крупные блоки и много воздуха: человек сразу видит главное':'плотная подача: много пользы на одном экране');
+ p.push(ans.visual==='photo'?'на первом экране большое фото (люди, место, результат)':'на первом экране графика, цифры и факты');
+ p.push(ans.shape==='round'?'мягкие скругления':'чёткие прямые линии');
+ return 'Ваш сайт: '+p.join(', ')+'. '+(ans.feel==='classic'?'Звучит надёжно и спокойно.':'Звучит смело и запоминается.');
+}
+function works(){
+ return WORKS.map(function(w){var s=0;for(var k in w.s)if(ans[k]===w.s[k])s++;return {w:w,s:s}}).sort(function(a,b){return b.s-a.s}).slice(0,3).map(function(x){return x.w});
+}
+function brief(){
+ return 'Стиль: '+name().replace(/<\/?em>/g,'')+'. Тема: '+NAMES.theme[ans.theme]+'; '+NAMES.density[ans.density]+'; '+NAMES.type[ans.type]+'; '+NAMES.color[ans.color]+'; настроение: '+NAMES.tone[ans.tone]+'; '+NAMES.shape[ans.shape]+'; первый экран: '+NAMES.visual[ans.visual]+'; звучание: '+NAMES.feel[ans.feel]+'. Цвета: '+palette().map(function(p){return p[1].toLowerCase()+' '+p[0]}).join(', ')+'. '+fonts()+'.';
+}
+function done(){
+ $('qbar').style.width='100%';$('quiz').hidden=true;var R=$('result');R.hidden=false;
+ var pal=palette(),ws=works();
+ var sm='--b:'+pal[0][0]+';--t:'+pal[1][0]+';--a:'+pal[2][0]+';--s:'+pal[3][0]+';--f:'+(ans.type==='serif'?'Georgia,serif':'system-ui,sans-serif')+';--g:'+(ans.density==='air'?'20px':'10px')+';--r:'+(ans.shape==='round'?'18px':'2px')+(ans.visual==='graphic'?';--pic:repeating-linear-gradient(45deg,'+pal[3][0]+' 0 10px,'+pal[0][0]+' 10px 20px)':'');
+ R.innerHTML='<p class="eyebrow" style="color:var(--gold,#e7b866);font-weight:700;font-size:15px;margin:0">Ваш стиль</p><h1 class="r-name">'+name()+'</h1><p class="q-lead" style="margin-bottom:0">'+about()+'</p>'+
+ '<div class="r-grid"><div class="r-card">'+mini(sm,'Ваш логотип')+'</div><div class="r-card"><b>Цвета</b><div class="r-pal">'+pal.map(function(p){return '<span><i style="background:'+p[0]+'"></i>'+p[1]+'<br>'+p[0]+'</span>'}).join('')+'</div><b>Шрифты</b><p style="color:var(--soft,#b9b4ab);margin:6px 0 12px">'+fonts()+'</p><b>Ваши выборы</b><div class="r-tags">'+Object.keys(ans).map(function(k){return '<span>'+NAMES[k][ans[k]]+'</span>'}).join('')+'</div></div></div>'+
+ '<h2 class="r-h">Наши работы в похожем духе</h2><div class="r-works">'+ws.map(function(w){return '<a href="'+w.u+'" target="_blank" rel="noopener"><b>'+w.n+'</b><span>'+w.d+'</span></a>'}).join('')+'</div>'+
+ '<h2 class="r-h">Хотите новый сайт в этом стиле?</h2><div class="r-card"><p style="margin:0;color:var(--soft,#b9b4ab)">Оставьте контакт и адрес нынешнего сайта (если есть). Пришлём бесплатный концепт первого экрана в вашем стиле за 24 часа.</p>'+
+ '<form class="r-form" id="rf" novalidate><input type="text" name="name" placeholder="Имя" aria-label="Имя" autocomplete="name"><input type="text" name="contact" placeholder="Телефон, Telegram или почта" aria-label="Телефон, Telegram или почта"><input type="text" name="website" placeholder="Ваш сайт (если есть)" aria-label="Ваш сайт" style="grid-column:1/-1" inputmode="url"><input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+ '<label class="c"><input type="checkbox" name="consent"> <span>Согласен на обработку имени и контакта для ответа на заявку (<a href="/privacy">конфиденциальность</a>)</span></label><div class="row"><button class="btn" type="submit">Получить концепт в этом стиле</button><button class="r-again" type="button" id="again">Пройти заново</button><span class="r-msg" id="rmsg" role="status"></span></div></form></div>';
+ R.scrollIntoView({block:'start'});
+ try{ym(114037897,'reachGoal','style_done')}catch(e){}
+ $('again').addEventListener('click',function(){i=0;ans={};R.hidden=true;$('quiz').hidden=false;show();});
+ var T0=Date.now();
+ $('rf').addEventListener('submit',function(e){e.preventDefault();var f=e.target,d=new FormData(f),m=$('rmsg');
+  if(d.get('_honey')||Date.now()-T0<3000){m.textContent='Спасибо! Заявка отправлена.';return}
+  if(!d.get('contact')||String(d.get('contact')).replace(/\s/g,'').length<5){m.textContent='Укажите телефон, Telegram или почту.';return}
+  if(!d.get('consent')){m.textContent='Отметьте согласие на обработку данных.';return}
+  var nd=new FormData();nd.append('Имя',d.get('name')||'');nd.append('Контакт',d.get('contact'));nd.append('Сайт',d.get('website')||'нет');nd.append('Бриф стиля',brief());nd.append('Согласие на обработку','да');nd.append('_subject','Квиз стиля: '+name().replace(/<\/?em>/g,'')+' · '+(d.get('name')||d.get('contact')));nd.append('_template','table');nd.append('_captcha','false');
+  var b=f.querySelector('button[type=submit]');b.disabled=true;
+  fetch('https://formsubmit.co/ajax/zhdanov.official@gmail.com',{method:'POST',headers:{'Accept':'application/json'},body:nd}).then(function(r){return r.json()}).then(function(j){if(String(j.success)!=='true')throw 0;m.textContent='Спасибо! Пришлём концепт в течение 24 часов.';f.reset();try{ym(114037897,'reachGoal','style_lead')}catch(e){}}).catch(function(){m.innerHTML='Не получилось отправить. Напишите в Telegram: <a href="https://t.me/ZhdanovOfficial" style="color:var(--gold,#e7b866)">@ZhdanovOfficial</a>'}).finally(function(){b.disabled=false});
+ });
+}
+})();
+</script>
+</body>
+</html>

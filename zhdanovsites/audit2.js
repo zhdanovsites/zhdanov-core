@@ -193,7 +193,7 @@
         var v = +document.getElementById('a2v').value || 0, c = +document.getElementById('a2c').value || 0, pe = document.getElementById('a2p'), p = +pe.value;
         var n = v * (mo.conv || 2) / 100 * (mo.pct || 0) / 100; if (pe.value !== '' && p >= 0) n = Math.min(n, p);
         money = n * c; var nn = n < 10 ? Math.round(n * 10) / 10 : Math.round(n);
-        document.getElementById('a2mr').innerHTML = 'Найденные ошибки стоят сайту около ' + (mo.pct || 0) + '% заявок: это примерно <b>' + String(nn).replace('.', ',') + '</b> клиентов в месяц. По вашей цене это <b>' + fmt(money, mo.cur) + '</b> в месяц и <b>' + fmt(money * 12, mo.cur) + '</b> в год, которые можно вернуть, исправив сайт.';
+        document.getElementById('a2mr').innerHTML = 'Найденные ошибки стоят сайту около ' + (mo.pct || 0) + '% заявок: это примерно <b>' + String(nn).replace('.', ',') + '</b> ' + (nn % 1 ? 'клиента' : plural(nn, 'клиент', 'клиента', 'клиентов')) + ' в месяц. По вашей цене это <b>' + fmt(money, mo.cur) + '</b> в месяц и <b>' + fmt(money * 12, mo.cur) + '</b> в год, которые можно вернуть, исправив сайт.';
         document.getElementById('a2sum').innerHTML = 'Итог: сайт недополучает около <b>' + fmt(money, mo.cur) + '</b> в месяц' + (lg && lg.fine ? ' и рискует штрафами до <b>' + fmt(lg.fine, lg.region === 'ru' ? '₽' : '$') + '</b>' : '') + '.';
         share();
       };
