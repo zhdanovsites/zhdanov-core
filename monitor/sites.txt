@@ -1,2 +1,3 @@
 # Сайты для проверки доступности (каждые 10 минут). Одна строка: адрес. # в начале: заметка.
 https://cu883590-wordpress-dod73.tw1.ru/
+https://zhdanov-test-down.invalid/
