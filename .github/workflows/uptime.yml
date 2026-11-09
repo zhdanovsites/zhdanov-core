@@ -19,9 +19,12 @@ jobs:
         env:
           TG_TOKEN: ${{ secrets.TG_TOKEN }}
           TG_CHAT: ${{ secrets.TG_CHAT }}
+          SITES: ${{ secrets.SITES }}
           GH_TOKEN: ${{ github.token }}
         run: |
           set -u
+          # список сайтов: из закрытого секрета SITES (если задан), иначе из monitor/sites.txt
+          if [ -n "${SITES:-}" ]; then printf '%s\n' "$SITES" > /tmp/sites.txt; else cp monitor/sites.txt /tmp/sites.txt; fi
           down=""
           while read -r url; do
             case "$url" in ''|\#*) continue;; esac
@@ -36,7 +39,7 @@ jobs:
               why="ответ $code"; [ "$code" = "000" ] && why="не отвечает"
               down="$down$url: $why\n"
             fi
-          done < monitor/sites.txt
+          done < /tmp/sites.txt
           open=$(gh issue list -R "$GITHUB_REPOSITORY" --state open --label down --json number --jq '.[0].number' 2>/dev/null || true)
           if [ -n "$down" ]; then
             msg=$(printf "⛔ Сайт не открывается:\n$down")
