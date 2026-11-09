@@ -59,7 +59,7 @@
 		if (!t && n.tagName === 'IMG') t = 'фото ' + (n.getAttribute('src') || '').split('/').pop();
 		return String(t).replace(/\s+/g, ' ').trim().slice(0, 100);
 	}
-	function pageKey() { return location.pathname; }
+	function pageKey() { return C.page || location.pathname; }
 	var who = C.name || '';
 	try { who = who || localStorage.getItem('zhfb_who') || ''; } catch (e) {}
 

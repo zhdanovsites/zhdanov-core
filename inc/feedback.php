@@ -89,6 +89,7 @@ add_action( 'wp_footer', function () {
 		'name'   => $u && $u->exists() ? $u->display_name : '',
 		'manage' => zhdanov_fb_can_manage(),
 		'admin'  => admin_url( 'admin.php?page=zhdanov-notes' ),
+		'page'   => ! empty( $GLOBALS['zh_pp_id'] ) ? '/?p=' . (int) $GLOBALS['zh_pp_id'] : '',
 	);
 	echo '<script>window.zhFb=' . wp_json_encode( $conf ) . ';</script>';
 	echo '<script src="' . esc_url( ZHDANOV_CORE_URL . 'assets/feedback.js?v=' . ZHDANOV_CORE_VERSION ) . '" defer></script>'; // phpcs:ignore
@@ -97,6 +98,9 @@ add_action( 'wp_footer', function () {
 /* ---------- REST ---------- */
 
 function zhdanov_fb_page_key( $url ) {
+	if ( preg_match( '#^/\?p=(\d+)$#', (string) $url ) ) {
+		return (string) $url; // черновик по ссылке для клиента
+	}
 	$p = wp_parse_url( (string) $url );
 	$path = isset( $p['path'] ) ? $p['path'] : '/';
 	return '/' . trim( $path, '/' ) . ( '/' === $path || '' === trim( $path, '/' ) ? '' : '/' );
@@ -275,7 +279,13 @@ function zhdanov_fb_page() {
 	}
 	$labels = array( 'new' => 'Новое', 'work' => 'В работе', 'done' => 'Готово' );
 	foreach ( $pages as $page => $items ) {
-		echo '<h2 style="margin-top:22px"><a href="' . esc_url( home_url( $page ) ) . '" target="_blank">' . esc_html( $page ) . '</a></h2>';
+		$plink = home_url( $page );
+		$ptext = $page;
+		if ( preg_match( '#^/\?p=(\d+)$#', $page, $pm ) ) {
+			$ptext = 'Черновик: ' . get_the_title( (int) $pm[1] );
+			$plink = function_exists( 'zhdanov_pp_link' ) && zhdanov_pp_link( (int) $pm[1] ) ? zhdanov_pp_link( (int) $pm[1] ) : get_edit_post_link( (int) $pm[1], 'raw' );
+		}
+		echo '<h2 style="margin-top:22px"><a href="' . esc_url( $plink ) . '" target="_blank">' . esc_html( $ptext ) . '</a></h2>';
 		echo '<table class="widefat striped" style="max-width:1100px"><tbody>';
 		foreach ( $items as $o ) {
 			echo '<tr data-id="' . (int) $o['id'] . '"><td style="width:40px">#' . (int) $o['id'] . '</td><td>';
@@ -290,7 +300,7 @@ function zhdanov_fb_page() {
 			echo '<br><small style="color:#666">' . esc_html( $o['who'] . ' · ' . $o['date'] . ( $o['dev'] ? ' · ' . $o['dev'] : '' ) ) . '</small></td>';
 			echo '<td style="width:300px;white-space:nowrap">';
 			if ( 'note' === $o['kind'] ) {
-				echo '<a class="button button-small" target="_blank" href="' . esc_url( home_url( $o['page'] ) . '#zh-note-' . $o['id'] ) . '">Показать на странице</a> ';
+				echo '<a class="button button-small" target="_blank" href="' . esc_url( ( 0 === strpos( $o['page'], '/?p=' ) ? $plink : home_url( $o['page'] ) ) . '#zh-note-' . $o['id'] ) . '">Показать на странице</a> ';
 				echo '<select class="zh-fb-st">';
 				foreach ( $labels as $k => $l ) {
 					echo '<option value="' . esc_attr( $k ) . '"' . selected( $o['status'], $k, false ) . '>' . esc_html( $l ) . '</option>';
@@ -313,3 +323,18 @@ function zhdanov_fb_page() {
 	</script>
 	<?php
 }
+
+/* Черновик опубликовали: замечания переезжают на его настоящий адрес */
+add_action( 'transition_post_status', function ( $new, $old, $post ) {
+	if ( 'publish' !== $new || 'publish' === $old ) {
+		return;
+	}
+	$ids = get_posts( array( 'post_type' => 'zh_note', 'numberposts' => 200, 'fields' => 'ids', 'meta_key' => '_zh_page', 'meta_value' => '/?p=' . $post->ID ) ); // phpcs:ignore
+	if ( ! $ids ) {
+		return;
+	}
+	$path = zhdanov_fb_page_key( get_permalink( $post ) );
+	foreach ( $ids as $id ) {
+		update_post_meta( $id, '_zh_page', $path );
+	}
+}, 10, 3 );
