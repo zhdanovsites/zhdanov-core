@@ -1,0 +1,52 @@
+name: Сайты открываются
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Проверка
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT: ${{ secrets.TG_CHAT }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -u
+          down=""
+          while read -r url; do
+            case "$url" in ''|\#*) continue;; esac
+            ok=0
+            for i in 1 2 3; do
+              code=$(curl -s -o /tmp/body -w '%{http_code}' -L --max-time 20 -A 'ZhdanovUptime/1.0' "$url" || echo 000)
+              if [ "$code" -ge 200 ] && [ "$code" -lt 400 ] && ! grep -qiE 'critical error|критическая ошибка|Error establishing a database' /tmp/body; then ok=1; break; fi
+              sleep 20
+            done
+            [ $ok -eq 0 ] && down="$down$url ($code)\n"
+          done < monitor/sites.txt
+          open=$(gh issue list -R "$GITHUB_REPOSITORY" --state open --label down --json number --jq '.[0].number' 2>/dev/null || true)
+          if [ -n "$down" ]; then
+            msg=$(printf "⛔ Сайт не открывается:\n$down")
+            echo "$msg"
+            if [ -z "$open" ]; then
+              gh label create down --color B60205 -R "$GITHUB_REPOSITORY" 2>/dev/null || true
+              gh issue create -R "$GITHUB_REPOSITORY" --title "Сайт не открывается" --label down --body "$msg"
+              if [ -n "${TG_TOKEN:-}" ] && [ -n "${TG_CHAT:-}" ]; then
+                curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" --data-urlencode "chat_id=${TG_CHAT}" --data-urlencode "text=${msg}" >/dev/null
+              fi
+            fi
+          elif [ -n "$open" ]; then
+            gh issue close "$open" -R "$GITHUB_REPOSITORY" --comment "✅ Снова открывается: $(date -u '+%d.%m %H:%M') UTC"
+            if [ -n "${TG_TOKEN:-}" ] && [ -n "${TG_CHAT:-}" ]; then
+              curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" --data-urlencode "chat_id=${TG_CHAT}" --data-urlencode "text=✅ Сайты снова открываются" >/dev/null
+            fi
+          fi
