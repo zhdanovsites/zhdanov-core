@@ -1,0 +1,56 @@
+{
+ "client": "Shelley Hub Family Practice",
+ "title": "Сайт сейчас и после",
+ "lead": "Семейная клиника (GP), Перт. Слева сайт сейчас (shelleyhubfamilypractice.com.au), справа наш вариант. Двигайте ползунок.",
+ "old": {
+  "label": "Сейчас",
+  "url": "https://www.shelleyhubfamilypractice.com.au/",
+  "d": "img/clinic-old-d.webp",
+  "m": "img/clinic-old-m.webp"
+ },
+ "new": {
+  "label": "После",
+  "url": "https://shelleyhub.pages.dev/",
+  "d": "img/clinic-new-d.webp",
+  "m": "img/clinic-new-m.webp"
+ },
+ "metrics": [
+  {
+   "name": "Вес страницы на телефоне",
+   "old": 1.33,
+   "new": 0.42,
+   "unit": "МБ",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на компьютере",
+   "old": 3.4,
+   "new": 1.4,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на телефоне",
+   "old": 2.8,
+   "new": 1.0,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Файлов при открытии на телефоне",
+   "old": 63,
+   "new": 22,
+   "unit": "",
+   "better": "less"
+  }
+ ],
+ "measured": "12.11.2026, одна и та же сеть и браузер для обоих сайтов, первая загрузка без кэша",
+ "en": {
+  "client": "Shelley Hub Family Practice",
+  "title": "Your website now and after",
+  "lead": "Family GP practice, Perth. Left: the current site (www.shelleyhubfamilypractice.com.au), right: our version. Drag the slider.",
+  "old_label": "Now",
+  "new_label": "After",
+  "measured": "12 Nov 2026, same network and browser for both sites, first load without cache"
+ }
+}

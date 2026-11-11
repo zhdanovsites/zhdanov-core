@@ -1,0 +1,41 @@
+{
+ "client": "Vozduh.Studio",
+ "title": "Сайт сейчас и после",
+ "lead": "Фотостудия и площадка для свадеб. Слева сайт сейчас (vozduh.studio), справа наш вариант. Двигайте ползунок.",
+ "old": {
+  "label": "Сейчас",
+  "url": "https://vozduh.studio/",
+  "d": "img/vozduh-old-d.webp",
+  "m": "img/vozduh-old-m.webp"
+ },
+ "new": {
+  "label": "После",
+  "url": "https://sitevozdux.pages.dev/",
+  "d": "img/vozduh-new-d.webp",
+  "m": "img/vozduh-new-m.webp"
+ },
+ "metrics": [
+  {
+   "name": "Загрузка на компьютере",
+   "old": 18.5,
+   "new": 3.4,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на телефоне",
+   "old": 12.6,
+   "new": 5.3,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Файлов при открытии на телефоне",
+   "old": 100,
+   "new": 36,
+   "unit": "",
+   "better": "less"
+  }
+ ],
+ "measured": "12.11.2026, одна и та же сеть и браузер для обоих сайтов, первая загрузка без кэша"
+}

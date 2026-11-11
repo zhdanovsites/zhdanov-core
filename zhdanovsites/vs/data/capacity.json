@@ -1,0 +1,56 @@
+{
+ "client": "Capacity Health · Dr Paul Patterson",
+ "title": "Сайт сейчас и после",
+ "lead": "Хиропрактика, Субиако (Перт). Слева сайт сейчас (capacityhealth.com.au), справа наш вариант. Двигайте ползунок.",
+ "old": {
+  "label": "Сейчас",
+  "url": "https://www.capacityhealth.com.au/",
+  "d": "img/capacity-old-d.webp",
+  "m": "img/capacity-old-m.webp"
+ },
+ "new": {
+  "label": "После",
+  "url": "https://capacityhealth.pages.dev/",
+  "d": "img/capacity-new-d.webp",
+  "m": "img/capacity-new-m.webp"
+ },
+ "metrics": [
+  {
+   "name": "Вес страницы на телефоне",
+   "old": 2.65,
+   "new": 0.26,
+   "unit": "МБ",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на компьютере",
+   "old": 2.2,
+   "new": 1.3,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на телефоне",
+   "old": 1.9,
+   "new": 0.8,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Файлов при открытии на телефоне",
+   "old": 44,
+   "new": 17,
+   "unit": "",
+   "better": "less"
+  }
+ ],
+ "measured": "12.11.2026, одна и та же сеть и браузер для обоих сайтов, первая загрузка без кэша",
+ "en": {
+  "client": "Capacity Health · Dr Paul Patterson",
+  "title": "Your website now and after",
+  "lead": "Chiropractic clinic, Subiaco, Perth. Left: the current site (www.capacityhealth.com.au), right: our version. Drag the slider.",
+  "old_label": "Now",
+  "new_label": "After",
+  "measured": "12 Nov 2026, same network and browser for both sites, first load without cache"
+ }
+}

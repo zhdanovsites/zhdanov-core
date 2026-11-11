@@ -1,0 +1,41 @@
+{
+ "client": "Ольга Степанова · Сейдр Ма",
+ "title": "Сайт сейчас и после",
+ "lead": "Эзотерика, магия и таро. Слева сайт сейчас (taplink.cc/seidrma), справа наш вариант. Двигайте ползунок.",
+ "old": {
+  "label": "Сейчас",
+  "url": "https://taplink.cc/seidrma",
+  "d": "img/seidrma-old-d.webp",
+  "m": "img/seidrma-old-m.webp"
+ },
+ "new": {
+  "label": "После",
+  "url": "https://seidrma.pages.dev/",
+  "d": "img/seidrma-new-d.webp",
+  "m": "img/seidrma-new-m.webp"
+ },
+ "metrics": [
+  {
+   "name": "Вес страницы на телефоне",
+   "old": 0.63,
+   "new": 0.21,
+   "unit": "МБ",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на компьютере",
+   "old": 6.4,
+   "new": 1.4,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на телефоне",
+   "old": 4.6,
+   "new": 1.0,
+   "unit": "с",
+   "better": "less"
+  }
+ ],
+ "measured": "12.11.2026, одна и та же сеть и браузер для обоих сайтов, первая загрузка без кэша"
+}

@@ -1,0 +1,56 @@
+{
+ "client": "Imagenetics Advanced Aesthetics",
+ "title": "Сайт сейчас и после",
+ "lead": "Косметолог и дерматерапия, Перт. Слева сайт сейчас (taplink.cc/imagenetics), справа наш вариант. Двигайте ползунок.",
+ "old": {
+  "label": "Сейчас",
+  "url": "https://taplink.cc/imagenetics",
+  "d": "img/imagenetics-old-d.webp",
+  "m": "img/imagenetics-old-m.webp"
+ },
+ "new": {
+  "label": "После",
+  "url": "https://imagenetics.pages.dev/ru/",
+  "d": "img/imagenetics-new-d.webp",
+  "m": "img/imagenetics-new-m.webp"
+ },
+ "metrics": [
+  {
+   "name": "Вес страницы на телефоне",
+   "old": 2.3,
+   "new": 0.25,
+   "unit": "МБ",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на компьютере",
+   "old": 5.6,
+   "new": 1.4,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на телефоне",
+   "old": 4.6,
+   "new": 1.1,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Файлов при открытии на телефоне",
+   "old": 34,
+   "new": 16,
+   "unit": "",
+   "better": "less"
+  }
+ ],
+ "measured": "12.11.2026, одна и та же сеть и браузер для обоих сайтов, первая загрузка без кэша",
+ "en": {
+  "client": "Imagenetics Advanced Aesthetics",
+  "title": "Your website now and after",
+  "lead": "Dermal therapist, Perth. Left: the current site (taplink.cc/imagenetics), right: our version. Drag the slider.",
+  "old_label": "Now",
+  "new_label": "After",
+  "measured": "12 Nov 2026, same network and browser for both sites, first load without cache"
+ }
+}

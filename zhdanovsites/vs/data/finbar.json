@@ -1,0 +1,56 @@
+{
+ "client": "Finbar · апартаменты в Перте",
+ "title": "Сайт сейчас и после",
+ "lead": "Застройщик жилых комплексов, Перт. Слева сайт сейчас (finbar.com.au), справа наш вариант. Двигайте ползунок.",
+ "old": {
+  "label": "Сейчас",
+  "url": "https://www.finbar.com.au/",
+  "d": "img/finbar-old-d.webp",
+  "m": "img/finbar-old-m.webp"
+ },
+ "new": {
+  "label": "После",
+  "url": "https://finbar-new.pages.dev/",
+  "d": "img/finbar-new-d.webp",
+  "m": "img/finbar-new-m.webp"
+ },
+ "metrics": [
+  {
+   "name": "Вес страницы на телефоне",
+   "old": 40.93,
+   "new": 13.01,
+   "unit": "МБ",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на компьютере",
+   "old": 2.6,
+   "new": 2.0,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на телефоне",
+   "old": 4.2,
+   "new": 1.6,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Файлов при открытии на телефоне",
+   "old": 252,
+   "new": 18,
+   "unit": "",
+   "better": "less"
+  }
+ ],
+ "measured": "12.11.2026, одна и та же сеть и браузер для обоих сайтов, первая загрузка без кэша",
+ "en": {
+  "client": "Finbar · Perth apartments",
+  "title": "Your website now and after",
+  "lead": "Apartment developer, Perth. Left: the current site (www.finbar.com.au), right: our version. Drag the slider.",
+  "old_label": "Now",
+  "new_label": "After",
+  "measured": "12 Nov 2026, same network and browser for both sites, first load without cache"
+ }
+}

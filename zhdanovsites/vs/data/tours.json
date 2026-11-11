@@ -1,0 +1,48 @@
+{
+ "client": "Клуб уникальных путешествий Михаила Зарубина",
+ "title": "Сайт сейчас и после",
+ "lead": "Авторские туры. Слева сайт сейчас (tours.zarubin.com (Тильда)), справа наш вариант. Двигайте ползунок.",
+ "old": {
+  "label": "Сейчас",
+  "url": "https://tours.zarubin.com/",
+  "d": "img/tours-old-d.webp",
+  "m": "img/tours-old-m.webp"
+ },
+ "new": {
+  "label": "После",
+  "url": "https://tours-zarubin.pages.dev/",
+  "d": "img/tours-new-d.webp",
+  "m": "img/tours-new-m.webp"
+ },
+ "metrics": [
+  {
+   "name": "Вес страницы на телефоне",
+   "old": 4.45,
+   "new": 2.96,
+   "unit": "МБ",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на компьютере",
+   "old": 11.1,
+   "new": 2.0,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на телефоне",
+   "old": 11.9,
+   "new": 1.4,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Файлов при открытии на телефоне",
+   "old": 127,
+   "new": 36,
+   "unit": "",
+   "better": "less"
+  }
+ ],
+ "measured": "12.11.2026, одна и та же сеть и браузер для обоих сайтов, первая загрузка без кэша"
+}

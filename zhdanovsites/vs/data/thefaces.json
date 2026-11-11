@@ -1,0 +1,56 @@
+{
+ "client": "The Faces Spa · Убуд и Санур",
+ "title": "Сайт сейчас и после",
+ "lead": "Спа-салон, Бали. Слева сайт сейчас (thefacesspa.com), справа наш вариант. Двигайте ползунок.",
+ "old": {
+  "label": "Сейчас",
+  "url": "https://thefacesspa.com/",
+  "d": "img/thefaces-old-d.webp",
+  "m": "img/thefaces-old-m.webp"
+ },
+ "new": {
+  "label": "После",
+  "url": "https://thefaces.pages.dev/ru/",
+  "d": "img/thefaces-new-d.webp",
+  "m": "img/thefaces-new-m.webp"
+ },
+ "metrics": [
+  {
+   "name": "Вес страницы на телефоне",
+   "old": 3.14,
+   "new": 0.42,
+   "unit": "МБ",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на компьютере",
+   "old": 6.0,
+   "new": 1.6,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на телефоне",
+   "old": 3.6,
+   "new": 1.2,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Файлов при открытии на телефоне",
+   "old": 49,
+   "new": 18,
+   "unit": "",
+   "better": "less"
+  }
+ ],
+ "measured": "12.11.2026, одна и та же сеть и браузер для обоих сайтов, первая загрузка без кэша",
+ "en": {
+  "client": "The Faces Spa · Ubud & Sanur",
+  "title": "Your website now and after",
+  "lead": "Day spa, Bali. Left: the current site (thefacesspa.com), right: our version. Drag the slider.",
+  "old_label": "Now",
+  "new_label": "After",
+  "measured": "12 Nov 2026, same network and browser for both sites, first load without cache"
+ }
+}

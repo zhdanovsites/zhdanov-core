@@ -1,0 +1,48 @@
+{
+ "client": "Елена Навоенко · школа «Наследие»",
+ "title": "Сайт сейчас и после",
+ "lead": "Психолог и школа расстановок. Слева сайт сейчас (navoenkolena.ru), справа наш вариант. Двигайте ползунок.",
+ "old": {
+  "label": "Сейчас",
+  "url": "https://navoenkolena.ru/",
+  "d": "img/elena-old-d.webp",
+  "m": "img/elena-old-m.webp"
+ },
+ "new": {
+  "label": "После",
+  "url": "https://navoenko.pages.dev/",
+  "d": "img/elena-new-d.webp",
+  "m": "img/elena-new-m.webp"
+ },
+ "metrics": [
+  {
+   "name": "Вес страницы на телефоне",
+   "old": 1.32,
+   "new": 0.23,
+   "unit": "МБ",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на компьютере",
+   "old": 3.3,
+   "new": 1.9,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Загрузка на телефоне",
+   "old": 9.2,
+   "new": 1.0,
+   "unit": "с",
+   "better": "less"
+  },
+  {
+   "name": "Файлов при открытии на телефоне",
+   "old": 23,
+   "new": 10,
+   "unit": "",
+   "better": "less"
+  }
+ ],
+ "measured": "12.11.2026, одна и та же сеть и браузер для обоих сайтов, первая загрузка без кэша"
+}
