@@ -61,6 +61,15 @@ body{margin:0;background:var(--bg,#121312);color:var(--ink,#f6efe2);font-family:
 .hp{position:absolute;left:-9999px}
 @media (max-width:700px){.q-pair{grid-template-columns:1fr}.r-grid,.r-works,.r-form{grid-template-columns:1fr}.q-q{font-size:24px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.r-works2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.r-w{background:var(--card,#1f201f);border:1px solid var(--line,#2e2f2d);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.r-wi{display:block;aspect-ratio:16/10;overflow:hidden;background:#000}.r-wi img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .5s}.r-wi:hover img{transform:scale(1.03)}
+.r-wb{padding:14px 16px 16px;display:grid;gap:6px}.r-wb span{color:var(--soft,#b9b4ab);font-size:15px}
+.r-wa{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:6px}.r-wa a{color:var(--soft,#b9b4ab);font-size:15px}
+.r-like{border:0;cursor:pointer;font:inherit;font-weight:700;background:var(--gold,#e7b866);color:#121312;border-radius:999px;padding:10px 18px;min-height:44px}
+.r-like[aria-pressed=true]{outline:2px solid var(--gold2,#f3d69f);outline-offset:2px}
+.r-liked{grid-column:1/-1;margin:0;color:var(--gold,#e7b866);font-size:15px}
+@media (prefers-reduced-motion:reduce){.r-wi img{transition:none}}
 </style>
 </head>
 <body>
@@ -97,16 +106,16 @@ var Q=[
 var NAMES={theme:{light:'светлый',dark:'тёмный'},density:{air:'много воздуха',dense:'насыщенный'},type:{serif:'заголовки с засечками',sans:'заголовки без засечек'},color:{calm:'спокойные цвета',bright:'яркие цвета'},tone:{strict:'строгий',warm:'тёплый'},shape:{sharp:'прямые углы',round:'скруглённые углы'},visual:{photo:'большое фото',graphic:'графика и цифры'},feel:{classic:'классика',modern:'смело и ново'}};
 /* Наши работы и их стиль (для «похожие работы») */
 var WORKS=[
- {n:'«Воздух» Наты Ярославской',u:'https://vozduh-cakes.pages.dev/',d:'тёмный «ювелирный», торты',s:{theme:'dark',type:'serif',tone:'warm',feel:'classic',visual:'photo'}},
- {n:'Ольга Степанова · Сейдр Ма',u:'https://seidrma.pages.dev/',d:'тёмно-золотой, эзотерика',s:{theme:'dark',type:'serif',feel:'classic',color:'calm'}},
- {n:'The Faces Spa',u:'https://thefaces.pages.dev/ru/',d:'спокойный спа, три языка',s:{theme:'light',density:'air',color:'calm',tone:'warm',visual:'photo',shape:'round'}},
- {n:'English by Guzel',u:'https://guzel-school.pages.dev/',d:'яркая онлайн-школа',s:{theme:'light',color:'bright',tone:'warm',type:'sans',feel:'modern',shape:'round'}},
- {n:'Белфуд «Маленькое счастье»',u:'https://belfood.pages.dev/',d:'яркий, цвета упаковки',s:{theme:'light',color:'bright',type:'sans',feel:'modern',visual:'graphic'}},
- {n:'БКЗ «Октябрьский»',u:'https://bkz-oktyabrsky.pages.dev/',d:'афиша, строго и чётко',s:{type:'sans',tone:'strict',density:'dense',shape:'sharp',visual:'photo'}},
- {n:'Школа «Тутти»',u:'https://tutti-spb.pages.dev/',d:'светлая, классическая школа',s:{theme:'light',type:'serif',feel:'classic',tone:'strict'}},
- {n:'Артём Белокуров · коуч',u:'https://belokurov-coach.pages.dev/',d:'яркий личный бренд',s:{color:'bright',type:'sans',feel:'modern',tone:'warm',visual:'photo'}},
- {n:'BMS7: тренажёры',u:'https://bms7.pages.dev/',d:'производство, каталог',s:{type:'sans',tone:'strict',density:'dense',visual:'graphic',theme:'light'}},
- {n:'Елена Навоенко',u:'https://navoenko.pages.dev/',d:'графитовый, крупный портрет',s:{theme:'dark',tone:'warm',visual:'photo',density:'air'}}
+ {n:'«Воздух» Наты Ярославской',i:'nata',u:'https://vozduh-cakes.pages.dev/',d:'тёмный «ювелирный», торты',s:{theme:'dark',type:'serif',tone:'warm',feel:'classic',visual:'photo'}},
+ {n:'Ольга Степанова · Сейдр Ма',i:'seidrma',u:'https://seidrma.pages.dev/',d:'тёмно-золотой, эзотерика',s:{theme:'dark',type:'serif',feel:'classic',color:'calm'}},
+ {n:'The Faces Spa',i:'thefaces-ru',u:'https://thefaces.pages.dev/ru/',d:'спокойный спа, три языка',s:{theme:'light',density:'air',color:'calm',tone:'warm',visual:'photo',shape:'round'}},
+ {n:'English by Guzel',i:'guzel',u:'https://guzel-school.pages.dev/',d:'яркая онлайн-школа',s:{theme:'light',color:'bright',tone:'warm',type:'sans',feel:'modern',shape:'round'}},
+ {n:'Белфуд «Маленькое счастье»',i:'belfood',u:'https://belfood.pages.dev/',d:'яркий, цвета упаковки',s:{theme:'light',color:'bright',type:'sans',feel:'modern',visual:'graphic'}},
+ {n:'БКЗ «Октябрьский»',i:'bkz',u:'https://bkz-oktyabrsky.pages.dev/',d:'афиша, строго и чётко',s:{type:'sans',tone:'strict',density:'dense',shape:'sharp',visual:'photo'}},
+ {n:'Школа «Тутти»',i:'tutti',u:'https://tutti-spb.pages.dev/',d:'светлая, классическая школа',s:{theme:'light',type:'serif',feel:'classic',tone:'strict'}},
+ {n:'Артём Белокуров · коуч',i:'belokurov',u:'https://belokurov-coach.pages.dev/',d:'яркий личный бренд',s:{color:'bright',type:'sans',feel:'modern',tone:'warm',visual:'photo'}},
+ {n:'BMS7: тренажёры',i:'bms7',u:'https://bms7.pages.dev/',d:'производство, каталог',s:{type:'sans',tone:'strict',density:'dense',visual:'graphic',theme:'light'}},
+ {n:'Елена Навоенко',i:'elena',u:'https://navoenko.pages.dev/',d:'графитовый, крупный портрет',s:{theme:'dark',tone:'warm',visual:'photo',density:'air'}}
 ];
 function mini(m,lbl){return '<div class="m" style="'+m+'" aria-hidden="true"><div class="nav">'+lbl+'<i><u></u><u></u><u></u></i></div><div class="hd">Ваш сайт</div><div class="row"><div class="pic"></div><div class="col"><div class="ln"></div><div class="ln s"></div><div class="ln"></div><div class="bt">Записаться</div></div></div></div>';}
 var i=0,ans={},$=function(id){return document.getElementById(id)};
@@ -139,7 +148,7 @@ function about(){
  return 'Ваш сайт: '+p.join(', ')+'. '+(ans.feel==='classic'?'Звучит надёжно и спокойно.':'Звучит смело и запоминается.');
 }
 function works(){
- return WORKS.map(function(w){var s=0;for(var k in w.s)if(ans[k]===w.s[k])s++;return {w:w,s:s}}).sort(function(a,b){return b.s-a.s}).slice(0,3).map(function(x){return x.w});
+ return WORKS.map(function(w){var s=0;for(var k in w.s)if(ans[k]===w.s[k])s++;return {w:w,s:s}}).sort(function(a,b){return b.s-a.s}).slice(0,2).map(function(x){return x.w});
 }
 function brief(){
  return 'Стиль: '+name().replace(/<\/?em>/g,'')+'. Тема: '+NAMES.theme[ans.theme]+'; '+NAMES.density[ans.density]+'; '+NAMES.type[ans.type]+'; '+NAMES.color[ans.color]+'; настроение: '+NAMES.tone[ans.tone]+'; '+NAMES.shape[ans.shape]+'; первый экран: '+NAMES.visual[ans.visual]+'; звучание: '+NAMES.feel[ans.feel]+'. Цвета: '+palette().map(function(p){return p[1].toLowerCase()+' '+p[0]}).join(', ')+'. '+fonts()+'.';
@@ -150,21 +159,25 @@ function done(){
  var sm='--b:'+pal[0][0]+';--t:'+pal[1][0]+';--a:'+pal[2][0]+';--s:'+pal[3][0]+';--f:'+(ans.type==='serif'?'Georgia,serif':'system-ui,sans-serif')+';--g:'+(ans.density==='air'?'20px':'10px')+';--r:'+(ans.shape==='round'?'18px':'2px')+(ans.visual==='graphic'?';--pic:repeating-linear-gradient(45deg,'+pal[3][0]+' 0 10px,'+pal[0][0]+' 10px 20px)':'');
  R.innerHTML='<p class="eyebrow" style="color:var(--gold,#e7b866);font-weight:700;font-size:15px;margin:0">Ваш стиль</p><h1 class="r-name">'+name()+'</h1><p class="q-lead" style="margin-bottom:0">'+about()+'</p>'+
  '<div class="r-grid"><div class="r-card">'+mini(sm,'Ваш логотип')+'</div><div class="r-card"><b>Цвета</b><div class="r-pal">'+pal.map(function(p){return '<span><i style="background:'+p[0]+'"></i>'+p[1]+'<br>'+p[0]+'</span>'}).join('')+'</div><b>Шрифты</b><p style="color:var(--soft,#b9b4ab);margin:6px 0 12px">'+fonts()+'</p><b>Ваши выборы</b><div class="r-tags">'+Object.keys(ans).map(function(k){return '<span>'+NAMES[k][ans[k]]+'</span>'}).join('')+'</div></div></div>'+
- '<h2 class="r-h">Наши работы в похожем духе</h2><div class="r-works">'+ws.map(function(w){return '<a href="'+w.u+'" target="_blank" rel="noopener"><b>'+w.n+'</b><span>'+w.d+'</span></a>'}).join('')+'</div>'+
+ '<h2 class="r-h">Наши работы в похожем духе</h2><div class="r-works2">'+ws.map(function(w){return '<article class="r-w"><a class="r-wi" href="'+w.u+'" target="_blank" rel="noopener" aria-label="Открыть сайт: '+w.n+'"><img src="/img/'+w.i+'-d640.webp" alt="'+w.n+': первый экран сайта" loading="lazy" width="640" height="400"></a><div class="r-wb"><b>'+w.n+'</b><span>'+w.d+'</span><div class="r-wa"><button type="button" class="btn r-like" data-w="'+w.n+'">Хочу так же</button><a href="'+w.u+'" target="_blank" rel="noopener">Открыть сайт</a></div></div></article>'}).join('')+'</div>'+
  '<h2 class="r-h">Хотите новый сайт в этом стиле?</h2><div class="r-card"><p style="margin:0;color:var(--soft,#b9b4ab)">Оставьте контакт и адрес нынешнего сайта (если есть). Пришлём бесплатный концепт первого экрана в вашем стиле за 24 часа.</p>'+
- '<form class="r-form" id="rf" novalidate><input type="text" name="name" placeholder="Имя" aria-label="Имя" autocomplete="name"><input type="text" name="contact" placeholder="Телефон, Telegram или почта" aria-label="Телефон, Telegram или почта"><input type="text" name="website" placeholder="Ваш сайт (если есть)" aria-label="Ваш сайт" style="grid-column:1/-1" inputmode="url"><input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+ '<form class="r-form" id="rf" novalidate><input type="text" name="name" placeholder="Имя" aria-label="Имя" autocomplete="name"><input type="text" name="contact" placeholder="Телефон, Telegram или почта" aria-label="Телефон, Telegram или почта"><input type="text" name="website" placeholder="Ваш сайт (если есть)" aria-label="Ваш сайт" style="grid-column:1/-1" inputmode="url"><input type="hidden" name="like" id="rlike"><p class="r-liked" id="rliked" hidden></p><input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">'+
  '<label class="c"><input type="checkbox" name="consent"> <span>Согласен на обработку имени и контакта для ответа на заявку (<a href="/privacy">конфиденциальность</a>)</span></label><div class="row"><button class="btn" type="submit">Получить концепт в этом стиле</button><button class="r-again" type="button" id="again">Пройти заново</button><span class="r-msg" id="rmsg" role="status"></span></div></form></div>';
  R.scrollIntoView({block:'start'});
  try{ym(114037897,'reachGoal','style_done')}catch(e){}
+ R.querySelectorAll('.r-like').forEach(function(b){b.addEventListener('click',function(){var n=b.dataset.w;$('rlike').value=n;var l=$('rliked');l.hidden=false;l.textContent='Пример, который вам понравился: '+n;R.querySelectorAll('.r-like').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});var f=$('rf');f.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(function(){f.querySelector('input[name=name]').focus({preventScroll:true})},450);try{ym(114037897,'reachGoal','style_like')}catch(e){}})});
  $('again').addEventListener('click',function(){i=0;ans={};R.hidden=true;$('quiz').hidden=false;show();});
  var T0=Date.now();
  $('rf').addEventListener('submit',function(e){e.preventDefault();var f=e.target,d=new FormData(f),m=$('rmsg');
   if(d.get('_honey')||Date.now()-T0<3000){m.textContent='Спасибо! Заявка отправлена.';return}
   if(!d.get('contact')||String(d.get('contact')).replace(/\s/g,'').length<5){m.textContent='Укажите телефон, Telegram или почту.';return}
   if(!d.get('consent')){m.textContent='Отметьте согласие на обработку данных.';return}
-  var nd=new FormData();nd.append('Имя',d.get('name')||'');nd.append('Контакт',d.get('contact'));nd.append('Сайт',d.get('website')||'нет');nd.append('Бриф стиля',brief());nd.append('Согласие на обработку','да');nd.append('_subject','Квиз стиля: '+name().replace(/<\/?em>/g,'')+' · '+(d.get('name')||d.get('contact')));nd.append('_template','table');nd.append('_captcha','false');
-  var b=f.querySelector('button[type=submit]');b.disabled=true;
-  fetch('https://formsubmit.co/ajax/zhdanov.official@gmail.com',{method:'POST',headers:{'Accept':'application/json'},body:nd}).then(function(r){return r.json()}).then(function(j){if(String(j.success)!=='true')throw 0;m.textContent='Спасибо! Пришлём концепт в течение 24 часов.';f.reset();try{ym(114037897,'reachGoal','style_lead')}catch(e){}}).catch(function(){m.innerHTML='Не получилось отправить. Напишите в Telegram: <a href="https://t.me/ZhdanovOfficial" style="color:var(--gold,#e7b866)">@ZhdanovOfficial</a>'}).finally(function(){b.disabled=false});
+  var like=d.get('like')||'',sty=name().replace(/<\/?em>/g,''),b=f.querySelector('button[type=submit]');b.disabled=true;
+  var ok=function(){m.textContent='Спасибо! Пришлём концепт в течение 24 часов.';f.reset();$('rliked').hidden=true;try{ym(114037897,'reachGoal','style_lead')}catch(e){}};
+  var ld=new FormData();ld.append('name',d.get('name')||'');ld.append('contact',d.get('contact'));ld.append('website',d.get('website')||'нет');ld.append('style',brief());ld.append('message',like?'Хочу так же, как: '+like:'Хочу сайт в этом стиле');ld.append('need','Концепт в стиле из квиза');ld.append('consent','on');ld.append('page','/style/');ld.append('_subject','Квиз стиля: '+sty);
+  var fs=function(){var nd=new FormData();nd.append('Имя',d.get('name')||'');nd.append('Контакт',d.get('contact'));nd.append('Сайт',d.get('website')||'нет');nd.append('Бриф стиля',brief());if(like)nd.append('Хочу так же, как',like);nd.append('Согласие на обработку','да');nd.append('_subject','Квиз стиля: '+sty+' · '+(d.get('name')||d.get('contact')));nd.append('_template','table');nd.append('_captcha','false');
+   return fetch('https://formsubmit.co/ajax/zhdanov.official@gmail.com',{method:'POST',headers:{'Accept':'application/json'},body:nd}).then(function(r){return r.json()}).then(function(j){if(String(j.success)!=='true')throw 0})};
+  fetch('/api/lead',{method:'POST',body:ld}).then(function(r){if(r.status===404||r.status===405)return fs();return r.json().then(function(j){if(!j.ok)throw 0})}).then(ok).catch(function(){m.innerHTML='Не получилось отправить. Напишите в Telegram: <a href="https://t.me/ZhdanovOfficial" style="color:var(--gold,#e7b866)">@ZhdanovOfficial</a>'}).finally(function(){b.disabled=false});
  });
 }
 })();
