@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Мария Лебедева · психолог онлайн и в Твери, запись на консультацию</title>
+<meta name="description" content="Психолог Мария Лебедева: тревога, выгорание, отношения. Онлайн и очно в Твери. Как проходит встреча, стоимость, запись.">
+<link rel="canonical" href="https://example.ru/">
+<meta name="theme-color" content="#f3f4f0">
+<link rel="preload" href="fonts/spectral-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<!-- ОСНОВА «ТИШИНА» (Zhdanov Sites). Для психологов, коучей, врачей, юристов: спокойно, много воздуха,
+     текст важнее картинок. Правила переноса: части в section с id, весь CSS здесь, тексты в HTML,
+     фото в /img/ с alt, форма на /api/lead, разметка FAQPage для Алисы и нейросетей. -->
+<style>
+@font-face{font-family:Spectral;src:url(fonts/spectral-cyrillic-400-normal.woff2) format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap}
+@font-face{font-family:Spectral;src:url(fonts/spectral-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+20BD;font-display:swap}
+@font-face{font-family:Plex;src:url(fonts/ibm-plex-sans-cyrillic-400-normal.woff2) format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-weight:400;font-display:swap}
+@font-face{font-family:Plex;src:url(fonts/ibm-plex-sans-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+20BD;font-weight:400;font-display:swap}
+@font-face{font-family:Plex;src:url(fonts/ibm-plex-sans-cyrillic-500-normal.woff2) format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-weight:500;font-display:swap}
+@font-face{font-family:Plex;src:url(fonts/ibm-plex-sans-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+20BD;font-weight:500;font-display:swap}
+:root{--bg:#f3f4f0;--ink:#1d2320;--mute:#5d6660;--line:#d9ddd6;--moss:#2f4a3a;--sage:#e3e8df;--s:Spectral,Georgia,serif;--u:Plex,system-ui,sans-serif}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-padding-top:20px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 19px/1.7 var(--s)}
+a{color:var(--moss)}img{max-width:100%;height:auto;display:block}
+:focus-visible{outline:2px solid var(--moss);outline-offset:3px}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:var(--ink);color:#fff;padding:8px 12px;z-index:9}
+/* раскладка: узкая колонка текста и тихое оглавление слева */
+.page{max-width:1120px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:200px minmax(0,680px);gap:0 80px}
+.rail{position:sticky;top:0;align-self:start;height:100vh;padding:36px 0;display:flex;flex-direction:column;font:400 15px/1.4 var(--u)}
+.rail .nm{font:500 16px/1.3 var(--u);color:var(--ink);text-decoration:none;margin-bottom:40px}
+.rail nav{display:grid;gap:12px}.rail nav a{color:var(--mute);text-decoration:none}.rail nav a:hover,.rail nav a[aria-current=true]{color:var(--ink)}
+.rail .go{margin-top:auto;color:var(--moss);font-weight:500}
+main section{padding:72px 0;border-bottom:1px solid var(--line)}
+main section:last-of-type{border-bottom:0}
+h1,h2,h3{font-weight:400;font-family:var(--s)}
+h2{font-size:32px;line-height:1.2;margin:0 0 26px}
+p{margin:0 0 18px}
+.u{font-family:var(--u)}
+/* первый экран: одна фраза, как страница книги */
+#hero{padding:22vh 0 72px;min-height:92vh}
+#hero h1{font-size:clamp(34px,4.4vw,54px);line-height:1.18;margin:0 0 30px;max-width:15em}
+#hero p{color:var(--mute);max-width:32em}
+.act{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;margin-top:34px;font-family:var(--u)}
+.btn{display:inline-flex;align-items:center;min-height:50px;padding:0 26px;background:var(--moss);color:#fff;border-radius:6px;text-decoration:none;font:500 17px/1 var(--u);border:0;cursor:pointer}
+.btn:hover{background:var(--ink)}
+.act small{font-size:15px;color:var(--mute)}
+/* запросы */
+.req{list-style:none;padding:0;margin:0}
+.req li{padding:16px 0;border-top:1px solid var(--line)}.req li:last-child{border-bottom:1px solid var(--line)}
+.req b{font-weight:400;display:block;font-size:21px}.req span{color:var(--mute);font-size:17px}
+/* как проходит */
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:22px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr}
+.steps li::before{content:counter(s);font:500 15px/1 var(--u);color:var(--moss);border:1px solid var(--moss);border-radius:50%;width:30px;height:30px;display:grid;place-items:center;margin-top:5px}
+/* стоимость */
+.price{display:grid;gap:0;font-family:var(--u);font-size:17px}
+.price div{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-top:1px solid var(--line)}
+.price div:last-child{border-bottom:1px solid var(--line)}.price b{font-weight:500;white-space:nowrap}
+.note{font-size:16px;color:var(--mute);margin-top:16px}
+/* обо мне */
+.me{display:grid;grid-template-columns:220px 1fr;gap:32px;align-items:start}
+.me img{border-radius:4px}
+.cred{font:400 16px/1.6 var(--u);color:var(--mute);padding:0;margin:18px 0 0;list-style:none}
+@media (max-width:640px){.me{grid-template-columns:1fr}.me img{max-width:260px}}
+/* вопросы */
+details{border-top:1px solid var(--line);padding:4px 0}details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;padding:14px 32px 14px 0;font-size:20px;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:4px;top:12px;font:400 24px/1 var(--u);color:var(--moss)}
+details[open] summary::after{content:"−"}
+details p{color:var(--mute);font-size:18px}
+/* запись */
+form{display:grid;gap:14px;font-family:var(--u);margin-top:10px}
+label.f{display:grid;gap:6px;font-size:15px;color:var(--mute)}
+input,textarea,select{font:400 17px/1.3 var(--u);padding:13px 14px;border:1px solid #b9c0b6;border-radius:6px;background:#fff;color:var(--ink);width:100%}
+textarea{min-height:100px;resize:vertical}
+.c{display:flex;gap:10px;font-size:15px;color:var(--mute)}.c input{width:20px;height:20px;flex:none;margin-top:2px}
+.hp{position:absolute;left:-9999px}
+form .btn{justify-self:start}.msg{min-height:1.4em;margin:0;font-size:16px}
+.ct{display:flex;flex-wrap:wrap;gap:10px 22px;font:500 17px/1.4 var(--u);margin:26px 0 0;padding:0;list-style:none}
+footer{grid-column:2;padding:30px 0 44px;font:400 14px/1.5 var(--u);color:var(--mute);display:flex;gap:10px 24px;flex-wrap:wrap}
+footer a{color:var(--mute)}
+@media (max-width:900px){.page{grid-template-columns:1fr}.rail{position:static;height:auto;padding:20px 0 0;flex-direction:row;justify-content:space-between;align-items:center}.rail nav,.rail .nm{margin:0}.rail nav{display:none}.rail .go{margin:0}footer{grid-column:1}#hero{padding-top:12vh;min-height:auto}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Сколько встреч понадобится?","acceptedAnswer":{"@type":"Answer","text":"Обычно с одним запросом работаем от 5 до 12 встреч. На первой встрече договоримся, как поймём, что стало лучше."}},
+{"@type":"Question","name":"Можно ли онлайн?","acceptedAnswer":{"@type":"Answer","text":"Да, встречи идут по видеосвязи в любом удобном мессенджере. Нужно тихое место, где вас не услышат."}},
+{"@type":"Question","name":"Что если нужно отменить встречу?","acceptedAnswer":{"@type":"Answer","text":"Предупредите за сутки, и встреча перенесётся без оплаты. При более поздней отмене встреча оплачивается."}}]}</script>
+</head>
+<body>
+<a class="skip" href="#hero">К содержанию</a>
+<div class="page">
+<aside class="rail">
+  <a class="nm" href="#hero">Мария Лебедева, психолог</a>
+  <nav aria-label="Разделы">
+    <a href="#requests">С чем приходят</a><a href="#how">Как проходит встреча</a><a href="#price">Стоимость</a><a href="#about">Обо мне</a><a href="#faq">Вопросы</a>
+  </nav>
+  <a class="go" href="#book">Записаться</a>
+</aside>
+<main>
+<section id="hero">
+  <h1>Можно перестать держаться из последних сил и разобраться, что на самом деле происходит.</h1>
+  <p>Я психолог. Работаю с тревогой, выгоранием и трудностями в отношениях, онлайн и очно в Твери. Первая встреча нужна, чтобы понять, подхожу ли я вам.</p>
+  <div class="act"><a class="btn" href="#book">Записаться на встречу</a><small>Отвечаю в течение дня</small></div>
+</section>
+
+<section id="requests" aria-labelledby="rq-h">
+  <h2 id="rq-h">С чем приходят</h2>
+  <ul class="req">
+    <li><b>Тревога, которая не отпускает</b><span>Мысли по кругу, сложно уснуть, тело в напряжении без видимой причины.</span></li>
+    <li><b>Усталость, которую не лечит отпуск</b><span>Работа перестала радовать, сил нет даже на любимое.</span></li>
+    <li><b>Одни и те же ссоры</b><span>С партнёром, родителями, детьми: разговор снова заканчивается обидой.</span></li>
+    <li><b>Важное решение</b><span>Переезд, развод, смена работы: хочется опереться на себя, а не на чужие советы.</span></li>
+  </ul>
+</section>
+
+<section id="how" aria-labelledby="how-h">
+  <h2 id="how-h">Как проходит встреча</h2>
+  <ol class="steps">
+    <li><p>Вы пишете в MAX, Telegram или через форму внизу. Я отвечаю и предлагаю два-три времени.</p></li>
+    <li><p>Встреча длится 50 минут, онлайн по видео или в кабинете. Вы рассказываете, что беспокоит, я задаю вопросы.</p></li>
+    <li><p>В конце первой встречи мы решаем, будем ли работать дальше и как часто встречаться.</p></li>
+  </ol>
+</section>
+
+<section id="price" aria-labelledby="pr-h">
+  <h2 id="pr-h">Стоимость</h2>
+  <div class="price">
+    <div><span>Консультация, 50 минут</span><b>3 500 ₽</b></div>
+    <div><span>Пять встреч, оплата сразу</span><b>16 000 ₽</b></div>
+    <div><span>Встреча для пары, 80 минут</span><b>5 500 ₽</b></div>
+  </div>
+  <p class="note">Оплата по ссылке после записи. Перенос без оплаты, если предупредить за сутки.</p>
+</section>
+
+<section id="about" aria-labelledby="ab-h">
+  <h2 id="ab-h">Обо мне</h2>
+  <div class="me">
+    <img src="img/portrait.svg" width="900" height="1100" alt="Мария Лебедева, психолог" loading="lazy">
+    <div>
+      <p>Два-три абзаца от первого лица: почему выбрали эту профессию, как работаете, во что верите. Человек ищет не регалии, а ощущение, что с вами можно говорить.</p>
+      <ul class="cred"><li>Образование: вуз и год</li><li>Подход: например, КПТ или схема-терапия</li><li>Личная терапия и супервизия: регулярно</li></ul>
+    </div>
+  </div>
+</section>
+
+<section id="faq" aria-labelledby="fq-h">
+  <h2 id="fq-h">Вопросы</h2>
+  <details><summary>Сколько встреч понадобится?</summary><p>Обычно с одним запросом работаем от 5 до 12 встреч. На первой встрече договоримся, как поймём, что стало лучше.</p></details>
+  <details><summary>Можно ли онлайн?</summary><p>Да, встречи идут по видеосвязи в любом удобном мессенджере. Нужно тихое место, где вас не услышат.</p></details>
+  <details><summary>Что если нужно отменить встречу?</summary><p>Предупредите за сутки, и встреча перенесётся без оплаты. При более поздней отмене встреча оплачивается.</p></details>
+</section>
+
+<section id="book" aria-labelledby="bk-h">
+  <h2 id="bk-h">Записаться</h2>
+  <p>Напишите пару слов о том, что беспокоит, и как с вами связаться. Всё, что вы напишете, остаётся между нами.</p>
+  <form id="lead" novalidate>
+    <label class="f">Как к вам обращаться<input name="name" type="text" autocomplete="given-name" required></label>
+    <label class="f">Телефон, MAX или Telegram<input name="contact" type="text" required></label>
+    <label class="f">Формат<select name="via"><option>Онлайн</option><option>В кабинете в Твери</option><option>Пока не знаю</option></select></label>
+    <label class="f">Что беспокоит (необязательно)<textarea name="message"></textarea></label>
+    <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <label class="c"><input type="checkbox" name="consent"> <span>Согласна(согласен) на обработку имени и контакта для ответа (<a href="privacy/">политика</a>)</span></label>
+    <button class="btn" type="submit">Отправить</button>
+    <p class="msg" id="msg" role="status"></p>
+  </form>
+  <ul class="ct"><li><a href="https://max.ru/" target="_blank" rel="noopener">MAX</a></li><li><a href="tel:+79000000000">+7 900 000-00-00</a></li><li><a href="https://t.me/" target="_blank" rel="noopener">Telegram</a></li></ul>
+</section>
+</main>
+<footer><span>© 2027 Мария Лебедева</span><a href="privacy/">Политика конфиденциальности</a><a href="https://zhdanovsites.com/" target="_blank" rel="noopener">Дизайн проекта</a></footer>
+</div>
+<script>
+(function(){
+ 'use strict';
+ // оглавление подсвечивает раздел, который сейчас на экране
+ var links=[].slice.call(document.querySelectorAll('.rail nav a'));
+ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)links.forEach(function(a){a.setAttribute('aria-current',a.getAttribute('href')==='#'+e.target.id?'true':'false')})})},{rootMargin:'-40% 0px -55% 0px'});
+  links.forEach(function(a){var s=document.querySelector(a.getAttribute('href'));if(s)io.observe(s)})}
+ var f=document.getElementById('lead'),m=document.getElementById('msg');
+ f.addEventListener('submit',function(e){e.preventDefault();var d=new FormData(f);
+  if(String(d.get('name')||'').trim().length<2){m.textContent='Напишите, как к вам обращаться.';f.name.focus();return}
+  if(String(d.get('contact')||'').replace(/\s/g,'').length<5){m.textContent='Напишите телефон, MAX или Telegram.';f.contact.focus();return}
+  if(!d.get('consent')){m.textContent='Отметьте согласие на обработку данных.';return}
+  d.append('page',location.pathname);var b=f.querySelector('.btn');b.disabled=true;m.textContent='Отправляем…';
+  fetch('/api/lead',{method:'POST',body:d}).then(function(r){return r.json()}).then(function(j){if(!j.ok)throw 0;m.textContent='Спасибо, я напишу вам в течение дня.';f.reset()})
+  .catch(function(){m.innerHTML='Не отправилось. Напишите напрямую в <a href="https://max.ru/">MAX</a> или <a href="https://t.me/">Telegram</a>.'}).then(function(){b.disabled=false})});
+})();
+</script>
+</body>
+</html>

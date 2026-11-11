@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Саша Ветров · стендап-тур «Громко» 2027: даты и билеты</title>
+<meta name="description" content="Даты стендап-тура Саши Ветрова «Громко» по городам России в 2027 году. Билеты, видео, приглашение в ваш город.">
+<link rel="canonical" href="https://example.ru/">
+<meta property="og:title" content="Саша Ветров · тур «Громко» 2027">
+<meta property="og:description" content="Даты по городам и билеты.">
+<meta name="theme-color" content="#1b2bff">
+<link rel="preload" href="fonts/dela-gothic-one-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<!-- ОСНОВА «АФИША» (Zhdanov Sites). Для артистов, стендапа, музыкантов, лекторов в туре.
+     Правила переноса: каждая часть в своём section с id, весь CSS здесь в одном месте, тексты в HTML,
+     фото в /img/ с alt, формы на /api/lead. Прошедшие даты прячутся сами (data-date у строки). -->
+<style>
+@font-face{font-family:Dela;src:url(fonts/dela-gothic-one-cyrillic-400-normal.woff2) format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap}
+@font-face{font-family:Dela;src:url(fonts/dela-gothic-one-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC;font-display:swap}
+@font-face{font-family:Golos;src:url(fonts/golos-text-cyrillic-400-normal.woff2) format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-weight:400;font-display:swap}
+@font-face{font-family:Golos;src:url(fonts/golos-text-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC;font-weight:400;font-display:swap}
+@font-face{font-family:Golos;src:url(fonts/golos-text-cyrillic-600-normal.woff2) format('woff2');unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-weight:600;font-display:swap}
+@font-face{font-family:Golos;src:url(fonts/golos-text-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC;font-weight:600;font-display:swap}
+:root{--blue:#1b2bff;--paper:#f7f7f2;--ink:#000;--sun:#ffe14d;--soft:#c9ceff;--line:rgba(255,255,255,.28);--d:Dela,Impact,sans-serif;--t:Golos,system-ui,sans-serif}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--blue);color:var(--paper);font:400 18px/1.55 var(--t)}
+a{color:inherit}img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:var(--sun);color:var(--ink);padding:8px 12px;z-index:9}
+/* шапка */
+.hd{position:sticky;top:0;z-index:5;background:var(--blue);border-bottom:1px solid var(--line)}
+.hd .wrap{display:flex;align-items:center;gap:18px;min-height:64px}
+.logo{font:400 20px/1 var(--d);text-decoration:none;margin-right:auto}
+.nav{display:flex;gap:22px}.nav a{text-decoration:none;font-weight:600;font-size:16px}.nav a:hover{text-decoration:underline}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border-radius:999px;background:var(--sun);color:var(--ink);font:600 17px/1 var(--t);text-decoration:none;border:0;cursor:pointer}
+.btn:hover{background:#fff}
+.btn.ghost{background:transparent;color:var(--paper);box-shadow:inset 0 0 0 2px var(--paper)}
+@media (max-width:760px){.nav{display:none}.hd .btn{min-height:42px;padding:0 16px;font-size:15px}}
+/* первый экран: имя как афиша + корешок билета */
+#hero{padding:clamp(34px,6vw,70px) 0 clamp(40px,7vw,90px);overflow:hidden}
+.poster{font:400 clamp(40px,15.5vw,212px)/.86 var(--d);margin:0;letter-spacing:-.01em;text-transform:uppercase}
+.poster span{display:block}@media (min-width:761px){.poster span:nth-child(2){padding-left:12vw}}
+.hero-row{display:grid;grid-template-columns:1fr minmax(280px,400px);gap:40px;align-items:end;margin-top:clamp(26px,4vw,48px)}
+.hero-row p{margin:0;max-width:34ch;font-size:clamp(19px,2vw,23px)}
+.stub{background:var(--sun);color:var(--ink);border-radius:18px;padding:20px 22px 22px;position:relative;transform:rotate(-2deg)}
+.stub::before,.stub::after{content:"";position:absolute;top:50%;width:26px;height:26px;margin-top:-13px;border-radius:50%;background:var(--blue)}
+.stub::before{left:-13px}.stub::after{right:-13px}
+.stub small{display:block;font-weight:600;font-size:14px}
+.stub b{display:block;font:400 34px/1.05 var(--d);margin:6px 0}
+.stub .btn{background:var(--ink);color:var(--sun);margin-top:12px;width:100%}.stub .btn:hover{background:var(--blue);color:#fff}
+@media (max-width:760px){.hero-row{grid-template-columns:1fr}.stub{transform:none}}
+/* даты тура */
+#tour{background:var(--paper);color:var(--ink);padding:clamp(48px,7vw,96px) 0}
+.h2{font:400 clamp(38px,6vw,72px)/1 var(--d);margin:0 0 28px;text-transform:uppercase}
+.months{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.months button{font:600 16px/1 var(--t);min-height:44px;padding:0 18px;border-radius:999px;border:2px solid var(--ink);background:transparent;cursor:pointer}
+.months button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.dates{list-style:none;margin:0;padding:0;border-top:3px solid var(--ink)}
+.dates li{display:grid;grid-template-columns:150px 1fr auto;gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid rgba(0,0,0,.18)}
+.dates time{font:400 30px/1 var(--d)}.dates time small{display:block;font:600 14px/1.3 var(--t);margin-top:6px}
+.dates .city{font:600 22px/1.25 var(--t)}.dates .venue{display:block;font-weight:400;font-size:16px;color:#3b3b3b}
+.dates .btn{background:var(--blue);color:#fff}.dates .btn:hover{background:var(--ink)}
+.dates .few{font-size:14px;font-weight:600;color:var(--blue);display:block;text-align:right;margin-bottom:6px}
+.dates .sold{font:600 16px/1 var(--t);color:#6b6b6b;padding:0 8px}
+.dates li.is-past{display:none}
+.empty{display:none;padding:18px 0;font-weight:600}
+@media (max-width:640px){.dates li{grid-template-columns:96px 1fr}.dates li>:last-child{grid-column:1/-1}.dates .btn{width:100%}.dates .few{text-align:left}.dates time{font-size:24px}}
+/* об артисте */
+#about{padding:clamp(48px,7vw,96px) 0}
+.about{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:clamp(24px,5vw,64px);align-items:start}
+.about img{border-radius:22px;aspect-ratio:4/5;object-fit:cover;width:100%;height:auto}
+.about p{max-width:60ch;margin:0 0 16px}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0;padding:0;list-style:none}
+.facts li{border:2px solid var(--paper);border-radius:999px;padding:8px 16px;font-weight:600;font-size:16px}
+@media (max-width:760px){.about{grid-template-columns:1fr}}
+/* видео */
+#video{padding:0 0 clamp(48px,7vw,96px)}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.vid{display:block;text-decoration:none;background:var(--ink);border-radius:22px;padding:22px;min-height:200px;position:relative}
+.vid b{display:block;font:400 26px/1.1 var(--d);margin-top:60px}.vid span{color:var(--soft);font-size:16px}
+.vid::before{content:"";position:absolute;left:22px;top:22px;width:46px;height:46px;border-radius:50%;background:var(--sun);clip-path:polygon(38% 28%,38% 72%,74% 50%)}
+.vid:hover{outline:2px solid var(--sun)}
+/* организаторам */
+#org{background:var(--sun);color:var(--ink);padding:clamp(48px,7vw,96px) 0}
+.org{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px)}
+.org p{max-width:46ch;margin:0}
+form{display:grid;gap:12px}
+input,textarea{font:400 17px/1.3 var(--t);padding:14px 16px;border-radius:14px;border:2px solid var(--ink);background:#fff;color:var(--ink);width:100%}
+textarea{min-height:110px;resize:vertical}
+.c{display:flex;gap:10px;align-items:flex-start;font-size:15px}.c input{width:22px;height:22px;flex:none;margin-top:2px}
+.hp{position:absolute;left:-9999px}
+form .btn{background:var(--ink);color:var(--sun);justify-self:start}form .btn:hover{background:var(--blue);color:#fff}
+.msg{font-weight:600;min-height:1.4em;margin:0}
+@media (max-width:760px){.org{grid-template-columns:1fr}form .btn{justify-self:stretch}}
+/* контакты */
+#contacts{padding:clamp(48px,7vw,96px) 0 40px}
+.ct{display:flex;flex-wrap:wrap;gap:12px;margin:0;padding:0;list-style:none}
+.ct a{display:inline-flex;min-height:52px;align-items:center;padding:0 22px;border-radius:999px;border:2px solid var(--paper);text-decoration:none;font-weight:600}
+.ct a:hover{background:var(--paper);color:var(--blue)}
+.ft{border-top:1px solid var(--line);margin-top:56px;padding:22px 0 30px;display:flex;flex-wrap:wrap;gap:12px 28px;font-size:15px;color:var(--soft)}
+.ft a{color:var(--soft)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.stub{transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#tour">К датам тура</a>
+<header class="hd"><div class="wrap">
+  <a class="logo" href="#hero">Саша Ветров</a>
+  <nav class="nav" aria-label="Разделы"><a href="#tour">Даты</a><a href="#about">Об артисте</a><a href="#video">Видео</a><a href="#org">Организаторам</a><a href="#contacts">Контакты</a></nav>
+  <a class="btn" href="#tour">Билеты</a>
+</div></header>
+<main>
+<section id="hero"><div class="wrap">
+  <h1 class="poster"><span>Саша</span><span>Ветров</span></h1>
+  <div class="hero-row">
+    <p>Стендап-тур «Громко»: новый час про семью, переезды и соседей сверху. 12 городов весной 2027.</p>
+    <div class="stub" id="next">
+      <small>Ближайший концерт</small>
+      <b>Казань, 14 марта</b>
+      <span>Воскресенье, 19:00 · КРК «Пирамида»</span>
+      <a class="btn" href="#tour">Выбрать город</a>
+    </div>
+  </div>
+</div></section>
+
+<section id="tour" aria-labelledby="tour-h"><div class="wrap">
+  <h2 class="h2" id="tour-h">Даты тура</h2>
+  <div class="months" role="group" aria-label="Месяц">
+    <button type="button" data-m="all" aria-pressed="true">Все</button>
+    <button type="button" data-m="03" aria-pressed="false">Март</button>
+    <button type="button" data-m="04" aria-pressed="false">Апрель</button>
+    <button type="button" data-m="05" aria-pressed="false">Май</button>
+  </div>
+  <ol class="dates">
+    <li data-date="2027-03-14"><time datetime="2027-03-14T19:00">14.03<small>вс, 19:00</small></time><p class="city" style="margin:0">Казань<span class="venue">КРК «Пирамида»</span></p><div><span class="few">Мало билетов</span><a class="btn" href="https://example.ru/kazan" target="_blank" rel="noopener">Купить билет</a></div></li>
+    <li data-date="2027-03-21"><time datetime="2027-03-21T19:00">21.03<small>вс, 19:00</small></time><p class="city" style="margin:0">Самара<span class="venue">Дом офицеров</span></p><div><a class="btn" href="https://example.ru/samara" target="_blank" rel="noopener">Купить билет</a></div></li>
+    <li data-date="2027-04-04"><time datetime="2027-04-04T19:30">04.04<small>вс, 19:30</small></time><p class="city" style="margin:0">Екатеринбург<span class="venue">ДК Железнодорожников</span></p><div><span class="sold">Билетов нет</span></div></li>
+    <li data-date="2027-04-18"><time datetime="2027-04-18T19:00">18.04<small>вс, 19:00</small></time><p class="city" style="margin:0">Новосибирск<span class="venue">ДК «Прогресс»</span></p><div><a class="btn" href="https://example.ru/nsk" target="_blank" rel="noopener">Купить билет</a></div></li>
+    <li data-date="2027-05-16"><time datetime="2027-05-16T20:00">16.05<small>вс, 20:00</small></time><p class="city" style="margin:0">Москва<span class="venue">Клуб «Главклуб»</span></p><div><a class="btn" href="https://example.ru/msk" target="_blank" rel="noopener">Купить билет</a></div></li>
+  </ol>
+  <p class="empty" id="empty">В этом месяце концертов нет. Посмотрите другие месяцы или <a href="#org">позовите тур в свой город</a>.</p>
+</div></section>
+
+<section id="about" aria-labelledby="about-h"><div class="wrap about">
+  <img src="img/artist.svg" width="800" height="1000" alt="Саша Ветров на сцене" loading="lazy">
+  <div>
+    <h2 class="h2" id="about-h">Об артисте</h2>
+    <p>Здесь два-три абзаца живым языком: откуда артист, с чего начал, о чём шутит. Без списка регалий в первом же предложении: человеку важно понять, будет ли ему смешно.</p>
+    <p>Второй абзац: что будет на концерте, сколько он длится, для какого возраста. Это снимает половину вопросов в личке.</p>
+    <ul class="facts"><li>Концерт 90 минут</li><li>18+</li><li>Без антракта</li></ul>
+  </div>
+</div></section>
+
+<section id="video" aria-labelledby="video-h"><div class="wrap">
+  <h2 class="h2" id="video-h">Видео</h2>
+  <div class="vids">
+    <a class="vid" href="https://vk.com/video" target="_blank" rel="noopener"><b>Про соседей сверху</b><span>VK Видео · 6 минут</span></a>
+    <a class="vid" href="https://rutube.ru/" target="_blank" rel="noopener"><b>Сольный концерт 2026</b><span>Rutube · 58 минут</span></a>
+  </div>
+</div></section>
+
+<section id="org" aria-labelledby="org-h"><div class="wrap org">
+  <div>
+    <h2 class="h2" id="org-h">Позвать в свой город</h2>
+    <p>Для организаторов и площадок: напишите город, зал и удобные даты. Ответим за один рабочий день и пришлём райдер.</p>
+  </div>
+  <form id="lead" novalidate>
+    <input name="name" type="text" placeholder="Имя" aria-label="Имя" autocomplete="name" required>
+    <input name="contact" type="text" placeholder="Телефон, MAX или Telegram" aria-label="Телефон, MAX или Telegram" required>
+    <input name="city" type="text" placeholder="Город и площадка" aria-label="Город и площадка">
+    <textarea name="message" placeholder="Даты и вместимость зала" aria-label="Даты и вместимость зала"></textarea>
+    <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <label class="c"><input type="checkbox" name="consent"> <span>Согласен на обработку имени и контакта, чтобы мне ответили (<a href="privacy/">политика</a>)</span></label>
+    <button class="btn" type="submit">Отправить заявку</button>
+    <p class="msg" id="msg" role="status"></p>
+  </form>
+</div></section>
+
+<section id="contacts" aria-labelledby="ct-h"><div class="wrap">
+  <h2 class="h2" id="ct-h">Контакты</h2>
+  <ul class="ct">
+    <li><a href="https://max.ru/" target="_blank" rel="noopener">MAX</a></li>
+    <li><a href="tel:+79000000000">+7 900 000-00-00</a></li>
+    <li><a href="https://t.me/" target="_blank" rel="noopener">Telegram</a></li>
+    <li><a href="https://vk.com/" target="_blank" rel="noopener">ВКонтакте</a></li>
+  </ul>
+  <div class="ft"><span>© 2027 Саша Ветров</span><a href="privacy/">Политика конфиденциальности</a><a href="https://zhdanovsites.com/" target="_blank" rel="noopener">Дизайн проекта</a></div>
+</div></section>
+</main>
+<script>
+(function(){
+ 'use strict';
+ var today=new Date();today.setHours(0,0,0,0);
+ var rows=[].slice.call(document.querySelectorAll('.dates li'));
+ // прошедшие даты прячутся сами
+ rows.forEach(function(li){if(new Date(li.dataset.date+'T23:59')<today)li.classList.add('is-past')});
+ // ближайший концерт на первом экране берётся из первой будущей строки
+ var nx=rows.filter(function(li){return!li.classList.contains('is-past')&&li.querySelector('.btn')})[0],stub=document.getElementById('next');
+ if(nx&&stub){var d=new Date(nx.dataset.date),M=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+  stub.querySelector('b').textContent=nx.querySelector('.city').firstChild.textContent.trim()+', '+d.getDate()+' '+M[d.getMonth()];
+  stub.querySelector('span').textContent=nx.querySelector('time small').textContent+' · '+nx.querySelector('.venue').textContent}
+ else if(stub)stub.hidden=true;
+ // фильтр по месяцам
+ var em=document.getElementById('empty');
+ document.querySelector('.months').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+  [].forEach.call(this.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+  var n=0;rows.forEach(function(li){var on=b.dataset.m==='all'||li.dataset.date.slice(5,7)===b.dataset.m;li.hidden=!on;if(on&&!li.classList.contains('is-past'))n++});em.style.display=n?'none':'block'});
+ // заявка организатора → /api/lead
+ var f=document.getElementById('lead'),m=document.getElementById('msg');
+ f.addEventListener('submit',function(e){e.preventDefault();var d=new FormData(f);
+  if(String(d.get('name')||'').trim().length<2){m.textContent='Напишите имя.';f.name.focus();return}
+  if(String(d.get('contact')||'').replace(/\s/g,'').length<5){m.textContent='Напишите телефон, MAX или Telegram.';f.contact.focus();return}
+  if(!d.get('consent')){m.textContent='Отметьте согласие на обработку данных.';return}
+  d.append('message','Город: '+(d.get('city')||'-')+'. '+(d.get('message')||''));d.append('kind','Организатор');d.append('page',location.pathname);
+  var b=f.querySelector('.btn');b.disabled=true;m.textContent='Отправляем…';
+  fetch('/api/lead',{method:'POST',body:d}).then(function(r){return r.json()}).then(function(j){if(!j.ok)throw 0;m.textContent='Заявка отправлена. Ответим за один рабочий день.';f.reset()})
+  .catch(function(){m.innerHTML='Не отправилось. Напишите напрямую в <a href="https://max.ru/">MAX</a> или <a href="https://t.me/">Telegram</a>.'}).then(function(){b.disabled=false})});
+})();
+</script>
+</body>
+</html>
