@@ -1,0 +1,34 @@
+name: Еженедельный отчёт по сайтам
+
+on:
+  schedule:
+    - cron: "23 23 * * 0"   # понедельник 08:23 по Токио
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Проверка и отчёт в Telegram
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT: ${{ secrets.TG_CHAT }}
+          SITES_WEEKLY: ${{ secrets.SITES_WEEKLY }}
+        run: |
+          cp zhdanovsites/functions/api/tgbot.js /tmp/tgbot.mjs
+          node monitor/weekly.mjs
+      - name: Запомнить оценки для сравнения через неделю
+        run: |
+          git config user.name "zhdanov-weekly"
+          git config user.email "actions@users.noreply.github.com"
+          git add monitor/weekly-last.json
+          git diff --cached --quiet || git commit -m "Еженедельный отчёт: оценки $(date -u +%d.%m)"
+          git push || true

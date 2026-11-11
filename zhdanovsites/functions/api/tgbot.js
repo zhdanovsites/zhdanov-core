@@ -87,7 +87,7 @@ export function buildReport(url, chk, geo) {
   }
   lines.push('');
   lines.push('Полный отчёт с объяснениями и сравнением с конкурентами: по кнопке ниже.');
-  return { text: lines.join('\n'), total };
+  return { text: lines.join('\n'), total, site: ss, geo: gs, law: ls, top: top.slice(0, 3).map((t) => t.replace(/<[^>]+>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&')) };
 }
 
 async function tg(env, method, body) {

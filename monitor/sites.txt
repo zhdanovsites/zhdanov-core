@@ -1,2 +1,35 @@
-# Сайты для проверки доступности (каждые 10 минут). Одна строка: адрес. # в начале: заметка.
+# Сайты для проверки доступности (GitHub запускает примерно раз в час). Одна строка: адрес. # в начале: заметка.
+# Тестовый WordPress (Timeweb, пробный период до ~16.11)
 https://cu883590-wordpress-dod73.tw1.ru/
+
+# Сайт студии и концепты
+https://zhdanovsites.com/
+https://zhdanovsites.com/en/
+https://zhdanovbooks.pages.dev/
+https://tours-zarubin.pages.dev/
+https://malyshenko.pages.dev/
+https://guzel-school.pages.dev/
+https://mir-chinivizov.pages.dev/
+https://bkz-oktyabrsky.pages.dev/
+https://vlcode.pages.dev/
+https://tutti-spb.pages.dev/
+https://belfood.pages.dev/
+https://thefaces.pages.dev/ru/
+https://imagenetics.pages.dev/ru/
+https://belokurov-coach.pages.dev/
+https://seidrma.pages.dev/
+https://stickers-ayp.pages.dev/
+https://vozduh-cakes.pages.dev/
+https://sitevozdux.pages.dev/
+https://mo-nast.pages.dev/
+https://bms7.pages.dev/
+https://perthbaptist.pages.dev/
+https://shelleyhub.pages.dev/
+https://bendtech.pages.dev/
+https://capacityhealth.pages.dev/
+https://holcim-concept.pages.dev/
+https://omshkola.pages.dev/
+https://navoenko.pages.dev/
+https://matsaberidze.pages.dev/
+https://finbar-new.pages.dev/
+https://zarubin-tours.pages.dev/
