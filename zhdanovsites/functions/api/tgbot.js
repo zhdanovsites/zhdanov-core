@@ -7,6 +7,9 @@
 //   TG_SECRET     любая длинная строка, защищает адрес бота (обязательно)
 //   TG_NOTIFY     chat_id студии: сюда приходит «кто что проверил» (необязательно)
 //
+// Глубокая ссылка: https://t.me/zhdanov_audit_bot?start=<base64url адреса без https://, до 64 знаков>,
+//   например JS: btoa(unescape(encodeURIComponent(host))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')
+//
 // Подключение (один раз): открыть в браузере
 //   https://zhdanovsites.com/api/tgbot?setup=<TG_SECRET>
 // Функция сама зарегистрирует адрес у Telegram. Ответ {"ok":true} значит готово.
@@ -109,8 +112,12 @@ async function handle(update, env, origin) {
   if (!msg || !msg.chat) return;
   const chat = msg.chat.id;
   const text = (msg.text || msg.caption || '').trim();
-  if (!text || /^\/(start|help)/i.test(text)) { await tg(env, 'sendMessage', { chat_id: chat, text: HELLO, parse_mode: 'HTML' }); return; }
-  const url = normUrl(text);
+  // глубокая ссылка с сайта: t.me/zhdanov_audit_bot?start=<адрес в base64url> → сразу проверяем
+  const sp = text.match(/^\/start\s+([A-Za-z0-9_-]{4,64})$/);
+  let fromStart = '';
+  if (sp) { try { fromStart = normUrl(decodeURIComponent(escape(atob(sp[1].replace(/-/g, '+').replace(/_/g, '/'))))); } catch (e) {} }
+  if (!fromStart && (!text || /^\/(start|help)/i.test(text))) { await tg(env, 'sendMessage', { chat_id: chat, text: HELLO, parse_mode: 'HTML' }); return; }
+  const url = fromStart || normUrl(text);
   if (!url) { await tg(env, 'sendMessage', { chat_id: chat, text: 'Не вижу адреса сайта. Пришлите его так: <b>mysite.ru</b>', parse_mode: 'HTML' }); return; }
 
   await tg(env, 'sendChatAction', { chat_id: chat, action: 'typing' });
