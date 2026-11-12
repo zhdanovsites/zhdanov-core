@@ -1,5 +1,5 @@
---- live index.html (12.11 утро)
-+++ новая главная
+--- live ru 12.11
++++ new ru
 @@ -28,2 +28,4 @@
  <link rel="preload" href="fonts/cormorant-garamond-cyrillic-600-normal.woff2" as="font" type="font/woff2" crossorigin>
 +<link rel="preload" href="fonts/cormorant-garamond-cyrillic-500-italic.woff2" as="font" type="font/woff2" crossorigin>
@@ -137,3 +137,8 @@
 +</a>
 +</div>
  </div>
+@@ -1406,2 +1427,4 @@
+ </script>
++<script src="/work-more.js" defer>
++</script>
+ </body>

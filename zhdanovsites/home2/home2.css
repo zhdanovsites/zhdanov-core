@@ -35,3 +35,5 @@
 .ck p{font-size:13px;line-height:1.4;max-width:760px}
 .ck .btn{padding:6px 16px;min-height:36px;width:auto;font-size:14px}
 @media (max-width:640px){.ck{padding:8px 10px;gap:10px}.ck p{font-size:12px}.ck .btn{min-height:40px}}
+/* 6. Карточки портфолио на телефоне короче: описание 3 строки, без хэштегов */
+@media (max-width:640px){.proj .txt{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.proj .htags{display:none}}

@@ -1,0 +1,140 @@
+--- live en 12.11
++++ new en
+@@ -76,3 +76,4 @@
+ <section class="hero">
+-<div class="wrap">
++<div class="wrap hero-g">
++<div class="hero-l">
+ <p class="eyebrow">Website audits & design · Alexander Zhdanov</p>
+@@ -94,8 +95,2 @@
+ </li>
+-<li>
+-<a class="stfree" href="#check">
+-<b>$0</b>
+-<span>free website check in 30 seconds</span>
+-</a>
+-</li>
+ </ul>
+@@ -103,4 +98,18 @@
+ <a class="btn" href="#order">Request an audit</a>
+-<a class="btn btn-line" href="#check">Free website check</a>
+-</div>
++<a class="btn btn-line" href="#work">See our work</a>
++</div>
++</div>
++<aside class="hk" aria-labelledby="hk-t">
++<p class="hk-t" id="hk-t">Check your website for free</p>
++<p class="hk-s">Enter the address: in 30 seconds you get the three problems that cost you customers, the legal risks and how much money the site loses.</p>
++<form class="ckf" id="ckf" novalidate>
++<input id="cku" type="text" inputmode="url" autocomplete="url" placeholder="mybusiness.com.au" aria-label="Your website address" required>
++<button class="btn" type="submit">Check</button>
++</form>
++<ul class="hk-n">
++<li>Google mobile speed and phone layout</li>
++<li>Privacy, consent and industry rules</li>
++<li>Forms, contacts and trust</li>
++</ul>
++</aside>
+ </div>
+@@ -110,13 +119,22 @@
+ <div class="wrap">
+-<p class="eyebrow">Free, in 30 seconds</p>
+-<h2 class="h2">Check your <em>website</em>
++<p class="eyebrow">Free website check</p>
++<h2 class="h2">What the <em>check shows</em>
+ </h2>
+-<p class="lead">Enter your website address and we will show the three main problems that cost you customers, the legal risks for your country and industry that could bring a fine, and how much money the site loses every month. We check Google’s mobile speed score, the phone layout, search basics, forms, privacy and consent and 20 more points.</p>
+-<form class="ckf" id="ckf" novalidate>
+-<input id="cku" type="text" inputmode="url" autocomplete="url" placeholder="your website, e.g. mybusiness.com.au" aria-label="your website, e.g. mybusiness.com.au" required>
+-<button class="btn" type="submit">Check</button>
+-</form>
++<ul class="chk-how">
++<li>
++<b>Three main problems</b>With a plain explanation of the fix</li>
++<li>
++<b>Legal risks</b>For your country and industry</li>
++<li>
++<b>Money</b>How many clients the site loses a month</li>
++<li>
++<b>Google speed</b>Mobile score and phone layout</li>
++</ul>
++<p class="lead">Enter your address in the box at the top of the page and we will show the three main problems that cost you customers, the legal risks for your country and industry that could bring a fine, and how much money the site loses every month. We check Google’s mobile speed score, the phone layout, search basics, forms, privacy and consent and 20 more points.</p>
++
+ <div class="ckr" id="ckr" aria-live="polite">
+ </div>
+-
++<p style="margin-top:14px">
++<a class="btn" href="#top" id="ck-up">Check your website</a>
++</p>
+ </div>
+@@ -666,31 +684,3 @@
+ 
+-<section class="sec" id="articles">
+-<div class="wrap">
+-<p class="eyebrow">Articles</p>
+-<h2 class="h2">Case studies & <em>articles</em>
+-</h2>
+-<div class="aothers">
+-<a class="aol" href="/en/spa-website-bali/">
+-<span>Spa &amp; wellness websites</span>
+-<b>Spa website in Bali: how tourists really choose a spa</b>
+-<p>Tourists pick a spa in Bali on their phone in a couple of minutes. Beautiful photos are not enough if Google sees one word and WhatsApp shows a blank link.</p>
+-</a>
+-<a class="aol" href="/en/beauty-clinic-website/">
+-<span>Beauty clinic websites</span>
+-<b>Beauty clinic websites: from Taplink to fully booked</b>
+-<p>Many skin and beauty clinics run on Instagram plus a link-in-bio page. It feels enough, until you count the bookings that go to the clinic with a real website.</p>
+-</a>
+-<a class="aol" href="/en/why-my-website-gets-no-enquiries/">
+-<span>Website enquiries</span>
+-<b>Why your website gets no enquiries: 8 reasons and how to find them</b>
+-<p>People visit, nobody books. These are the eight reasons I find most often in website audits, and how to check each one yourself in minutes.</p>
+-</a>
+-<a class="aol aall" href="/en/articles/">
+-<span>Articles</span>
+-<b>All articles (10)</b>
+-<p>Website case studies by industry: the mistakes that cost customers and how to fix them.</p>
+-</a>
+-</div>
+-</div>
+-</section>
++
+ 
+@@ -938,2 +928,31 @@
+ </form>
++</div>
++</section>
++<section class="sec" id="articles">
++<div class="wrap">
++<p class="eyebrow">Articles</p>
++<h2 class="h2">Case studies & <em>articles</em>
++</h2>
++<div class="aothers">
++<a class="aol" href="/en/spa-website-bali/">
++<span>Spa &amp; wellness websites</span>
++<b>Spa website in Bali: how tourists really choose a spa</b>
++<p>Tourists pick a spa in Bali on their phone in a couple of minutes. Beautiful photos are not enough if Google sees one word and WhatsApp shows a blank link.</p>
++</a>
++<a class="aol" href="/en/beauty-clinic-website/">
++<span>Beauty clinic websites</span>
++<b>Beauty clinic websites: from Taplink to fully booked</b>
++<p>Many skin and beauty clinics run on Instagram plus a link-in-bio page. It feels enough, until you count the bookings that go to the clinic with a real website.</p>
++</a>
++<a class="aol" href="/en/why-my-website-gets-no-enquiries/">
++<span>Website enquiries</span>
++<b>Why your website gets no enquiries: 8 reasons and how to find them</b>
++<p>People visit, nobody books. These are the eight reasons I find most often in website audits, and how to check each one yourself in minutes.</p>
++</a>
++<a class="aol aall" href="/en/articles/">
++<span>Articles</span>
++<b>All articles (10)</b>
++<p>Website case studies by industry: the mistakes that cost customers and how to fix them.</p>
++</a>
++</div>
+ </div>
+@@ -1066,2 +1085,5 @@
+ </script>
++<script>(function(){var f=document.getElementById("ckf"),r=document.getElementById("ckr"),c=document.getElementById("check"),i=document.getElementById("cku"),u=document.getElementById("ck-up");if(f&&r&&c&&!c.contains(f))f.addEventListener("submit",function(){if(i.value.trim())setTimeout(function(){r.scrollIntoView({block:"start",behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})},60)});if(u)u.addEventListener("click",function(e){e.preventDefault();i.scrollIntoView({block:"center"});i.focus({preventScroll:true})})})();</script>
++<script src="/work-more.js" defer>
++</script>
+ </body>
