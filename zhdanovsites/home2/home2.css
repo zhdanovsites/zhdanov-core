@@ -1,0 +1,37 @@
+/* ===== zhdanovsites: главная v2 (Mike Japan, 12.11.2026) ===== */
+/* 1. Запасной шрифт с метриками Cormorant: заголовки и цифры не прыгают, пока грузится шрифт */
+@font-face{font-family:'Cormorant fb';src:local('Georgia'),local('Times New Roman');size-adjust:84%;ascent-override:108%;descent-override:34%;line-gap-override:0%}
+@font-face{font-family:'Manrope fb';src:local('Arial'),local('Helvetica');size-adjust:104%;ascent-override:102%;descent-override:29%;line-gap-override:0%}
+:root{--serif:'Cormorant Garamond','Cormorant fb',Georgia,serif;--sans:'Manrope','Manrope fb',system-ui,-apple-system,'Segoe UI',sans-serif;--mute:#9b978f}
+/* 2. Первый экран: слева обещание, справа проверка сайта */
+.hero-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,430px);gap:56px;align-items:start}
+.hk{margin-top:40px}
+.hk .a2-goals{min-height:96px}
+.hero-g h1{font-size:clamp(44px,5.6vw,86px);max-width:none}
+.hero-g .lead{max-width:40em}
+.hk{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:28px 26px 24px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.hk-t{font:600 30px/1.1 var(--serif);margin:0 0 8px;color:var(--ink)}
+.hk-s{margin:0 0 18px;color:var(--soft);font-size:15px;line-height:1.5}
+.hk .ckf{flex-direction:column;max-width:none}
+.hk .ckf .btn{width:100%}
+.hk-n{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:6px;font-size:14px;color:var(--soft)}
+.hk-n li::before{content:"✓";color:var(--gold);margin-right:8px;font-weight:700}
+.hk-tg{display:inline-block;margin-top:14px;font-size:14px;color:var(--gold)}
+.hero .stats{gap:18px 36px;margin-top:34px}
+.hero .stats li{min-height:52px}
+.hero .stats b{min-width:2ch}
+@media (max-width:980px){.hero-g{display:flex;flex-direction:column;gap:0}.hero-l{display:contents}.hero-g .eyebrow{order:1}.hero-g h1{order:2}.hero-g .lead{order:3}.hk{order:4;margin:6px 0 10px}.hero-g .stats{order:5}.hero-g .hcta{order:6}}
+@media (max-width:640px){.hk{padding:22px 18px 20px;border-radius:22px}.hk-t{font-size:26px}.hero-g .lead{font-size:17px}}
+/* 3. Секция результата проверки */
+.check .ckr:empty{display:none}
+.chk-how{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:0 0 26px;padding:0;list-style:none}
+.chk-how li{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;color:var(--soft);font-size:15px}
+.chk-how b{display:block;color:var(--ink);font-size:16px;margin-bottom:4px}
+/* 4. Доступность: ссылки в тексте подчёркнуты, подписи карточек контрастнее */
+.ftr a[href="/privacy"],.chk1 a,.ck a{text-decoration:underline;text-underline-offset:2px}
+.old{border-bottom-color:#77746d}
+/* 5. Плашка cookie: тонкая полоса внизу в одну строку, не закрывает кнопки первого экрана */
+.ck{left:0;right:0;bottom:0;max-width:none;margin:0;padding:8px 16px;gap:16px;border-radius:0;border-width:1px 0 0;flex-direction:row;align-items:center;justify-content:center;box-shadow:0 -10px 30px rgba(0,0,0,.35)}
+.ck p{font-size:13px;line-height:1.4;max-width:760px}
+.ck .btn{padding:6px 16px;min-height:36px;width:auto;font-size:14px}
+@media (max-width:640px){.ck{padding:8px 10px;gap:10px}.ck p{font-size:12px}.ck .btn{min-height:40px}}

@@ -1,0 +1,139 @@
+--- live index.html (12.11 утро)
++++ новая главная
+@@ -28,2 +28,4 @@
+ <link rel="preload" href="fonts/cormorant-garamond-cyrillic-600-normal.woff2" as="font" type="font/woff2" crossorigin>
++<link rel="preload" href="fonts/cormorant-garamond-cyrillic-500-italic.woff2" as="font" type="font/woff2" crossorigin>
++<link rel="preload" href="fonts/manrope-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+ <link rel="stylesheet" href="style.css?v=43">
+@@ -71,3 +73,4 @@
+ <section class="hero">
+-<div class="wrap">
++<div class="wrap hero-g">
++<div class="hero-l">
+ <p class="eyebrow">Аудит и дизайн сайтов · Александр Жданов</p>
+@@ -89,8 +92,2 @@
+ </li>
+-<li>
+-<a class="stfree" href="#check">
+-<b>0 ₽</b>
+-<span>бесплатная проверка сайта за 30 секунд</span>
+-</a>
+-</li>
+ </ul>
+@@ -98,4 +95,19 @@
+ <a class="btn" href="#order">Заказать аудит</a>
+-<a class="btn btn-line" href="#check">Бесплатная проверка</a>
+-</div>
++<a class="btn btn-line" href="#work">Посмотреть работы</a>
++</div>
++</div>
++<aside class="hk" aria-labelledby="hk-t">
++<p class="hk-t" id="hk-t">Проверьте свой сайт бесплатно</p>
++<p class="hk-s">Вставьте адрес: за 30 секунд покажем оценку из 100, главные ошибки, штрафы по законам и сколько клиентов сайт теряет.</p>
++<form class="ckf" id="ckf" novalidate>
++<input id="cku" type="text" inputmode="url" autocomplete="url" placeholder="mysite.ru" aria-label="Адрес вашего сайта" required>
++<button class="btn" type="submit">Проверить</button>
++</form>
++<ul class="hk-n">
++<li>Скорость на телефоне и в Google</li>
++<li>152-ФЗ, cookie, реклама</li>
++<li>Видят ли вас Алиса и нейросети</li>
++</ul>
++<a class="hk-tg" href="https://t.me/zhdanov_audit_bot" target="_blank" rel="noopener">Или проверьте в Telegram-боте</a>
++</aside>
+ </div>
+@@ -105,13 +117,21 @@
+ <div class="wrap">
+-<p class="eyebrow">Бесплатно, за 30 секунд</p>
+-<h2 class="h2">Проверьте свой <em>сайт</em>
++<p class="eyebrow">Бесплатная проверка</p>
++<h2 class="h2">Что покажет <em>проверка</em>
+ </h2>
+-<p class="lead">Введите адрес сайта: покажем три главные ошибки, которые мешают клиентам, юридические риски по законам вашей страны и отрасли, за которые могут оштрафовать, и сколько денег сайт теряет каждый месяц. Проверяем скорость в Google, телефон, поиск, формы, согласие на обработку данных и ещё 20 пунктов.</p>
+-<form class="ckf" id="ckf" novalidate>
+-<input id="cku" type="text" inputmode="url" autocomplete="url" placeholder="https://tours.zarubin.com/" aria-label="https://tours.zarubin.com/" required>
+-<button class="btn" type="submit">Проверить</button>
+-</form>
++<ul class="chk-how">
++<li>
++<b>Оценка из 100</b>Сайт и телефон, законы, нейросети</li>
++<li>
++<b>Три главные ошибки</b>С объяснением, как исправить</li>
++<li>
++<b>Деньги</b>Сколько клиентов сайт теряет за месяц</li>
++<li>
++<b>Вы и конкуренты</b>Сравнение с тремя сайтами в одной таблице</li>
++</ul>
++<p class="lead">Введите адрес сайта в поле на первом экране: покажем три главные ошибки, которые мешают клиентам, юридические риски по законам вашей страны и отрасли, за которые могут оштрафовать, и сколько денег сайт теряет каждый месяц. Проверяем скорость в Google, телефон, поиск, формы, согласие на обработку данных и ещё 20 пунктов.</p>
++
+ <div class="ckr" id="ckr" aria-live="polite">
+ </div>
+-<p class="lead" style="margin-top:14px;font-size:16px">Не знаете, какой стиль подойдёт? <a href="/style/">Подберите за 1 минуту</a>
++<p class="lead" style="margin-top:14px;font-size:16px">
++<a class="btn" href="#top" id="ck-up">Проверить свой сайт</a> Не знаете, какой стиль подойдёт? <a href="/style/">Подберите за 1 минуту</a>
+ </p>
+@@ -1009,31 +1029,3 @@
+ 
+-<section class="sec" id="articles">
+-<div class="wrap">
+-<p class="eyebrow">Статьи</p>
+-<h2 class="h2">Разборы и <em>статьи</em>
+-</h2>
+-<div class="aothers">
+-<a class="aol" href="/sajt-parfyumera/">
+-<span>Сайты мастерских и брендов</span>
+-<b>Сайт парфюмера: почему мастер-класс по духам не находят в Яндексе</b>
+-<p>Красивый сайт, сильные фото и тексты, а записи идут только из Telegram. Разбираю, чего не хватает сайту парфюмера и мастерской, чтобы его находили по «мастер-класс по созданию духов».</p>
+-</a>
+-<a class="aol" href="/sajt-dlya-ezoterika/">
+-<span>Сайты наставников и эзотериков</span>
+-<b>Сайт духовного наставника: почему его не находят в Яндексе и нейросетях</b>
+-<p>Сайт наставника работает только для тех, кто пришёл из Instagram: для Яндекса и нейросетей он почти пустой. Разбираю частые ошибки сайтов эзотериков и наставников на Тильде.</p>
+-</a>
+-<a class="aol" href="/sajt-kontsertnogo-zala/">
+-<span>Сайты концертных залов</span>
+-<b>Почему зрители покупают билеты у перекупщиков, а не на сайте зала</b>
+-<p>У зала лучшая афиша города и билеты без наценки, но сайт весит 49 МБ и открывается на телефоне минутами. Разбираю, что должно быть на сайте концертного зала.</p>
+-</a>
+-<a class="aol aall" href="/stati/">
+-<span>Статьи</span>
+-<b>Все статьи (24)</b>
+-<p>Разборы сайтов по нишам: ошибки, которые стоят клиентов, и как их исправить.</p>
+-</a>
+-</div>
+-</div>
+-</section>
++
+ 
+@@ -1277,2 +1269,31 @@
+ </form>
++</div>
++</section>
++<section class="sec" id="articles">
++<div class="wrap">
++<p class="eyebrow">Статьи</p>
++<h2 class="h2">Разборы и <em>статьи</em>
++</h2>
++<div class="aothers">
++<a class="aol" href="/sajt-parfyumera/">
++<span>Сайты мастерских и брендов</span>
++<b>Сайт парфюмера: почему мастер-класс по духам не находят в Яндексе</b>
++<p>Красивый сайт, сильные фото и тексты, а записи идут только из Telegram. Разбираю, чего не хватает сайту парфюмера и мастерской, чтобы его находили по «мастер-класс по созданию духов».</p>
++</a>
++<a class="aol" href="/sajt-dlya-ezoterika/">
++<span>Сайты наставников и эзотериков</span>
++<b>Сайт духовного наставника: почему его не находят в Яндексе и нейросетях</b>
++<p>Сайт наставника работает только для тех, кто пришёл из Instagram: для Яндекса и нейросетей он почти пустой. Разбираю частые ошибки сайтов эзотериков и наставников на Тильде.</p>
++</a>
++<a class="aol" href="/sajt-kontsertnogo-zala/">
++<span>Сайты концертных залов</span>
++<b>Почему зрители покупают билеты у перекупщиков, а не на сайте зала</b>
++<p>У зала лучшая афиша города и билеты без наценки, но сайт весит 49 МБ и открывается на телефоне минутами. Разбираю, что должно быть на сайте концертного зала.</p>
++</a>
++<a class="aol aall" href="/stati/">
++<span>Статьи</span>
++<b>Все статьи (24)</b>
++<p>Разборы сайтов по нишам: ошибки, которые стоят клиентов, и как их исправить.</p>
++</a>
++</div>
+ </div>

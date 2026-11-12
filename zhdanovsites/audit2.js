@@ -107,6 +107,9 @@
     try { if (window.ym) window.ym(window.ZH_METRIKA || 0, 'reachGoal', 'audit_start'); } catch (e) {}
     var t0 = Date.now(), step = 0, res = { check: null, geo: null }, ended = false;
     out.innerHTML = '<div class="a2"><div class="a2-run" role="status" aria-live="polite"><div class="a2-runh"><b>Проверяем ' + esc(u.replace(/^https?:\/\//, '').replace(/\/$/, '')) + '</b><span class="a2-time">0:00</span></div><div class="a2-bar"><i></i></div><ol class="a2-steps">' + STEPS.map(function (s) { return '<li><i aria-hidden="true"></i>' + s + '</li>'; }).join('') + '</ol></div></div>';
+    // форма на первом экране, а результат ниже: показываем результат
+    var cs = document.getElementById('check');
+    if (cs && !cs.contains(form) && out.scrollIntoView) setTimeout(function () { out.scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); }, 60);
     var lis = out.querySelectorAll('.a2-steps li'), bar = out.querySelector('.a2-bar i'), tm = out.querySelector('.a2-time');
     function mark(n) { for (var i = 0; i < lis.length; i++) { lis[i].className = i < n ? 'done' : (i === n ? 'on' : ''); } bar.style.width = Math.min(96, Math.round(100 * n / lis.length)) + '%'; }
     mark(0);
@@ -275,12 +278,16 @@
     return h;
   }
 
+  /* кнопка «Проверить свой сайт» в секции результата ведёт к полю на первом экране */
+  var up = document.getElementById('ck-up');
+  if (up) up.addEventListener('click', function (e) { e.preventDefault(); inp.scrollIntoView({ block: 'center' }); inp.focus({ preventScroll: true }); });
+
   /* ---------- открыли ссылку на отчёт: проверка запускается сама ---------- */
   var qs = new URLSearchParams(location.search), au = qs.get('audit');
   if (au) {
     var g0 = qs.get('goal'); if (g0) { var b0 = gw.querySelector('[data-g="' + g0 + '"]'); if (b0) b0.click(); }
     inp.value = au;
-    var sec = document.getElementById('check'); if (sec && sec.scrollIntoView) setTimeout(function () { sec.scrollIntoView({ block: 'start' }); }, 300);
+    var sec = document.getElementById('check'); if (sec && sec.contains(form) && sec.scrollIntoView) setTimeout(function () { sec.scrollIntoView({ block: 'start' }); }, 300);
     setTimeout(function () { run(au); }, 500);
   }
 })();
